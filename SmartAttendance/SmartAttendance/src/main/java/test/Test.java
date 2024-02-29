@@ -1,15 +1,47 @@
 package test;
 
 import basicClass.*;
+import basicClass.face.FaceController;
+import basicClass.face.FaceInformation;
+
+import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        Student student = new Student("aaa","121212",true,new MyClass(),"1", Status.normal);
-        student.showStudentInformation();
+        FaceController faceController=new FaceController();
+//
+//        FaceInformation faceInformation1=faceController.addFace("/opt/myProject/photoes/peopleList/shl2.jpeg");
+//        FaceInformation faceInformation2=faceController.addFace("/opt/myProject/photoes/peopleList/lly1.jpeg");
+//
+//        ArrayList<FaceInformation> peopleList=new ArrayList<>();
+//        peopleList.add(faceInformation1);
+//        peopleList.add(faceInformation2);
+//
+//        FaceInformation targetFace=faceController.addFace("/opt/myProject/photoes/shl1.jpeg");
+//
+//
+//        for (FaceInformation faceInformation:peopleList){
+//            if(faceController.ifSamePeople(targetFace,faceInformation)){
+//                System.out.println("true");
+//            }
+//        }
+//        System.out.println(faceController.ifSamePeople(faceInformation1,faceInformation2)?"true":"false");
 
+        Student lly=new Student("lly","123",true,"1");
+        Student shl=new Student("shl","123",true,"2");
 
-        for (DayTime i = DayTime.morning1; i!=null; i=MyFunction.nextDayTime(i)) {
-            System.out.println(i);
+        lly.setFaceInformation("/opt/myProject/photoes/peopleList/lly1.jpeg");
+        shl.setFaceInformation("/opt/myProject/photoes/peopleList/shl2.jpeg");
+
+        MyClass myClass=new MyClass();
+        myClass.addStudent(lly);
+        myClass.addStudent(shl);
+
+        FaceInformation sourceFace=faceController.addFace("/opt/myProject/photoes/lly2.jpeg");
+        Student student=myClass.ifThisClassStudent(sourceFace);
+        if(student!=null){
+            System.out.println(student.getName());
         }
+
     }
 }

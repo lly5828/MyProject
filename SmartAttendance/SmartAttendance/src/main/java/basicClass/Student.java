@@ -1,5 +1,7 @@
 package basicClass;
 
+import basicClass.face.FaceInformation;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -9,15 +11,17 @@ public class Student extends Person{
     public static final int countWeeks=20;//周数
     protected MyClass myClass;
     protected String studentNumber;
-    protected ArrayList<PersonStatus> status;
-//    protected Status status;
+//    protected ArrayList<PersonStatus> status;
+    protected Status status;
+
+
     protected ArrayList<AttendanceRecord> attendanceRecords;
 
-    public Student(String name,String phoneNumber,boolean sex,MyClass myClass,String studentNumber,Status status){
+    public Student(String name,String phoneNumber,boolean sex,MyClass myClass,String studentNumber){
         super(name, phoneNumber, sex);
         this.myClass=myClass;
         this.studentNumber=studentNumber;
-//        this.status=status;
+        this.status=Status.normal;
         this.attendanceRecords=new ArrayList<>();
         for (int i = 1; i <=countWeeks ; i++) {
             for (int j = 1; j <= 7; j++) {
@@ -26,6 +30,20 @@ public class Student extends Person{
                 }
             }
         }
+    }
+
+    public Student(String name,String phoneNumber,boolean sex,String studentNumber){
+        super(name, phoneNumber, sex);
+        this.studentNumber=studentNumber;
+        this.status=Status.normal;
+        this.attendanceRecords=new ArrayList<>();
+//        for (int i = 1; i <=countWeeks ; i++) {
+//            for (int j = 1; j <= 7; j++) {
+//                for (DayTime k =DayTime.morning1 ; k!=null ; MyFunction.nextDayTime(k)) {
+//
+//                }
+//            }
+//        }
     }
 
     public void showStudentInformation(){
