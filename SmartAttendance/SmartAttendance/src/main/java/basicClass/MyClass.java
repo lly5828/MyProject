@@ -12,6 +12,8 @@ public class MyClass {
 
     Course[][] courseTable;
 
+//    LeaveRecordFactory leaveRecordFactory;
+
 //    public void showCourseTable(){
 //        System.out.println("Class"+this.name+"Course Table");
 //        for (int i=1;i<8;i++){

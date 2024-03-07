@@ -27,21 +27,23 @@ public class Test {
 //        }
 //        System.out.println(faceController.ifSamePeople(faceInformation1,faceInformation2)?"true":"false");
 
-        Student lly=new Student("lly","123",true,"1");
-        Student shl=new Student("shl","123",true,"2");
+//        Student lly=new Student("lly","123",true,"1");
+//        Student shl=new Student("shl","123",true,"2");
+//
+//        lly.setFaceInformation("/opt/myProject/photoes/peopleList/lly1.jpeg");
+//        shl.setFaceInformation("/opt/myProject/photoes/peopleList/shl2.jpeg");
+//
+//        MyClass myClass=new MyClass();
+//        myClass.addStudent(lly);
+//        myClass.addStudent(shl);
+//
+//        FaceInformation sourceFace=faceController.addFace("/opt/myProject/photoes/lly2.jpeg");
+//        Student student=myClass.ifThisClassStudent(sourceFace);
+//        if(student!=null){
+//            System.out.println(student.getName());
+//        }
 
-        lly.setFaceInformation("/opt/myProject/photoes/peopleList/lly1.jpeg");
-        shl.setFaceInformation("/opt/myProject/photoes/peopleList/shl2.jpeg");
-
-        MyClass myClass=new MyClass();
-        myClass.addStudent(lly);
-        myClass.addStudent(shl);
-
-        FaceInformation sourceFace=faceController.addFace("/opt/myProject/photoes/lly2.jpeg");
-        Student student=myClass.ifThisClassStudent(sourceFace);
-        if(student!=null){
-            System.out.println(student.getName());
-        }
-
+        ArrayList<Student> arrayList=new ArrayList<>();
+        System.out.println(arrayList.size());
     }
 }

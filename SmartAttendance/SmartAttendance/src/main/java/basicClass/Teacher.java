@@ -4,4 +4,6 @@ public class Teacher extends Person{
     MyClass teachClass;
     Course teachCourse;
 
+    String teacherNumber;
+
 }

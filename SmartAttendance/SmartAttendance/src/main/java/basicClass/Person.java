@@ -27,6 +27,7 @@ public class Person {
     public void setFaceInformation(String filePath){
         FaceController faceController=new FaceController();
         this.faceInformation=faceController.addFace(filePath);
+        faceController.close();
     }
 
 //    获取人脸信息
