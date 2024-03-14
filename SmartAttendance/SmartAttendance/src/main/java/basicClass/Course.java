@@ -9,6 +9,20 @@ public class Course {
     Teacher teacher;
     ClassRoom classRoom;
 
+    public Course(String name) {
+        this.name = name;
+    }
+
+    public Course(String name,Teacher teacher){
+        this(name);
+        this.teacher=teacher;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 //    public void showCourse(){
 //
 //    }

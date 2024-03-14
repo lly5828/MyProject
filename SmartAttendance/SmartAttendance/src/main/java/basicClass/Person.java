@@ -3,6 +3,7 @@ package basicClass;
 import basicClass.face.FaceController;
 import basicClass.face.FaceInformation;
 import com.arcsoft.face.FaceEngine;
+import com.arcsoft.face.toolkit.ImageInfo;
 
 public class Person {
     protected String name;
@@ -27,6 +28,12 @@ public class Person {
     public void setFaceInformation(String filePath){
         FaceController faceController=new FaceController();
         this.faceInformation=faceController.addFace(filePath);
+        faceController.close();
+    }
+
+    public void setFaceInformation(ImageInfo imageInfo){
+        FaceController faceController=new FaceController();
+        this.faceInformation=faceController.addFace(imageInfo);
         faceController.close();
     }
 

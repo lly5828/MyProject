@@ -1,7 +1,9 @@
 package basicClass;
 
+import java.util.Objects;
+
 public class CourseTime {
-    protected int dayInWeek;
+    protected int dayInWeek;//7->1->2->.....->6
     protected DayTime dayTime;
     public CourseTime(int dayInWeek,DayTime dayTime){
         this.dayInWeek=dayInWeek;
@@ -28,8 +30,46 @@ public class CourseTime {
                 return 6;
             case afternoon3:
                 return 7;
-            default:
+            case afternoon4:
                 return 8;
+            default:return 0;
         }
+    }
+
+
+//    在下课时间调用，返回下一节上课时间
+    public int getNextCourseTimeNumber(){
+        switch (this.dayTime){
+            case mRest0_1:
+                return 1;
+            case mRest1_2:
+                return 2;
+            case mRest2_3:
+                return 3;
+            case mRest3_4:
+                return 4;
+            case aRest0_1:
+                return 5;
+            case aRest1_2:
+                return 6;
+            case aRest2_3:
+                return 7;
+            case aRest3_4:
+                return 8;
+            default:return 0;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseTime that = (CourseTime) o;
+        return dayInWeek == that.dayInWeek && dayTime == that.dayTime;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dayInWeek, dayTime);
     }
 }

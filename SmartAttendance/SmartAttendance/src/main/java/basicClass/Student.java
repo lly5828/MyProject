@@ -23,13 +23,6 @@ public class Student extends Person{
         this.studentNumber=studentNumber;
         this.status=Status.normal;
         this.attendanceRecords=new ArrayList<>();
-        for (int i = 1; i <=countWeeks ; i++) {
-            for (int j = 1; j <= 7; j++) {
-                for (DayTime k =DayTime.morning1 ; k!=null ; MyFunction.nextDayTime(k)) {
-
-                }
-            }
-        }
     }
 
     public Student(String name,String phoneNumber,boolean sex,String studentNumber){
@@ -37,13 +30,6 @@ public class Student extends Person{
         this.studentNumber=studentNumber;
         this.status=Status.normal;
         this.attendanceRecords=new ArrayList<>();
-//        for (int i = 1; i <=countWeeks ; i++) {
-//            for (int j = 1; j <= 7; j++) {
-//                for (DayTime k =DayTime.morning1 ; k!=null ; MyFunction.nextDayTime(k)) {
-//
-//                }
-//            }
-//        }
     }
 
     public void showStudentInformation(){
@@ -66,15 +52,18 @@ public class Student extends Person{
             attendanceRecord.showAttendanceRecord();
         }
     }
-}
 
-class AttendanceRecord{
-    protected SchoolTime time;
-    protected Course course;
-    protected Status status;
-    public void showAttendanceRecord(){
-        System.out.print("Time:");
-        time.showSchoolTime();
-        System.out.println("\tCourse:"+course.name+"\tStatue"+status);
+    public void setMyClass(MyClass myClass) {
+        this.myClass = myClass;
+    }
+
+    public void addAttendanceRecord(SchoolTime schoolTime,String courseName,Status status){
+        attendanceRecords.add(new AttendanceRecord(schoolTime,courseName,status));
+    }
+
+    public ArrayList<AttendanceRecord> getAttendanceRecords() {
+        return attendanceRecords;
     }
 }
+
+

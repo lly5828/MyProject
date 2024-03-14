@@ -21,7 +21,7 @@ public class FaceController {
 
     ActiveFileInfo activeFileInfo;
 
-    private static final float SAME_RATE=0.8F;
+    private static final float SAME_RATE=0.7F;
 
     public FaceController() {
         String appId = "5JU3BrWkw7PCYKMAyB3F1ZC5Ba1qRkPW9wejrW1vBt2z";
@@ -76,6 +76,19 @@ public class FaceController {
         List<FaceInfo> faceInfoList=new ArrayList<>();
         errorCode = faceEngine.detectFaces(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList);
 
+        if(faceInfoList.isEmpty())return null;
+        //特征提取
+        FaceFeature faceFeature = new FaceFeature();
+        errorCode = faceEngine.extractFaceFeature(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList.get(0), faceFeature);
+
+        return new FaceInformation(faceFeature);
+    }
+
+    public FaceInformation addFace(ImageInfo imageInfo){
+        List<FaceInfo> faceInfoList=new ArrayList<>();
+        errorCode = faceEngine.detectFaces(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList);
+
+        if(faceInfoList.isEmpty())return null;
         //特征提取
         FaceFeature faceFeature = new FaceFeature();
         errorCode = faceEngine.extractFaceFeature(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList.get(0), faceFeature);
@@ -87,7 +100,7 @@ public class FaceController {
         FaceSimilar faceSimilar=new FaceSimilar();
         errorCode=faceEngine.compareFaceFeature(faceInformation1.getFaceFeature(),faceInformation2.faceFeature,faceSimilar);
 
-        System.out.println(faceSimilar.getScore());
+//        System.out.println(faceSimilar.getScore());
         if(faceSimilar.getScore()>SAME_RATE){
             return true;
         }else {
