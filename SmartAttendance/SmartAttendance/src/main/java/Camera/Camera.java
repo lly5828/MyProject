@@ -41,14 +41,7 @@ public class Camera {
         }
     }
 
-//    public void run(){
-//        boolean flag=true;
-//        while (flag) {
-//            SchoolTime now = SchoolTime.getNowSchoolTime();
-//
-//
-//        }
-//    }
+
 }
 
 

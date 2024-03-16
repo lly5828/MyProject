@@ -66,9 +66,9 @@ public class Manager {
     }
 
 
-    public static void main(String[] args) {
-        Manager manager=new Manager();
-        manager.allClasses.add(new MyClass("aaa"));
-        manager.logInStudentInfo();
-    }
+//    public static void main(String[] args) {
+//        Manager manager=new Manager();
+//        manager.allClasses.add(new MyClass("aaa"));
+//        manager.logInStudentInfo();
+//    }
 }
