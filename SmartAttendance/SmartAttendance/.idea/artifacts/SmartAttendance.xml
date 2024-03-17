@@ -3,6 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/SmartAttendance</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="SmartAttendance/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="gson-2.0" />
+      </element>
     </root>
   </artifact>
 </component>
