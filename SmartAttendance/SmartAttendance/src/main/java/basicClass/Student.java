@@ -9,12 +9,14 @@ import java.util.Map;
 //学生
 public class Student extends Person{
     public static final int countWeeks=20;//周数
+
+    public MyClass getMyClass() {
+        return myClass;
+    }
+
     protected MyClass myClass;
     protected String studentNumber;
-//    protected ArrayList<PersonStatus> status;
     protected Status status;
-
-
     protected ArrayList<AttendanceRecord> attendanceRecords;
 
     public Student(String name,String phoneNumber,boolean sex,MyClass myClass,String studentNumber){
@@ -63,6 +65,10 @@ public class Student extends Person{
 
     public ArrayList<AttendanceRecord> getAttendanceRecords() {
         return attendanceRecords;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
     }
 }
 

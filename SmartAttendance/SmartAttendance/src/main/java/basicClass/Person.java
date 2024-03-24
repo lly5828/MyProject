@@ -41,4 +41,12 @@ public class Person {
     public FaceInformation getFaceInformation(){
         return faceInformation;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public boolean getSex() {
+        return sex;
+    }
 }

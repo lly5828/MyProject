@@ -1,5 +1,6 @@
 package basicClass.LeaveInfo;
 
+import basicClass.DayTime;
 import basicClass.SchoolTime;
 import basicClass.Student;
 import basicClass.Teacher;
@@ -26,6 +27,11 @@ public class LeaveRecordFactory {
         int leaveRecordNum=this.recordCount;
         this.leaveRecords.put(recordCount,new LeaveRecord(leaveRecordNum, startTime, endTime, reason, student_apply, teacher_deal));
     }
+    public void addLeaveRecord(SchoolTime schoolTime, String reason, Student student_apply, Teacher teacher_deal){
+        addLeaveRecord(new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
+                new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_apply,teacher_deal);
+    }
+
 
 //    search by recordNum
     public LeaveRecord getLeaveRecord(int recordNum){
@@ -63,4 +69,16 @@ public class LeaveRecordFactory {
     }
 
 
+    public HashMap<Integer, LeaveRecord> getAllLeaveRecords() {
+        return leaveRecords;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public int getRecordCount() {
+        return recordCount;
+    }
 }

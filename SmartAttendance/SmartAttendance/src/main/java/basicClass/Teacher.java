@@ -13,4 +13,16 @@ public class Teacher extends Person{
     public String getTeacherNumber() {
         return teacherNumber;
     }
+
+    public MyClass getTeachClass() {
+        return teachClass;
+    }
+
+    public void setTeachClass(MyClass teachClass) {
+        this.teachClass = teachClass;
+    }
+
+    public void setTeachCourse(Course teachCourse) {
+        this.teachCourse = teachCourse;
+    }
 }

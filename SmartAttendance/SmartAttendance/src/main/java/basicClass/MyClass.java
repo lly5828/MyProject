@@ -12,8 +12,6 @@ public class MyClass {
     ArrayList<Course> courses;
     Teacher teacher;
     Course[][] courseTable;
-
-
     LeaveRecordFactory leaveRecordFactory;
 
     public void showCourseTable() {
@@ -43,6 +41,7 @@ public class MyClass {
     public MyClass(String name) {
         this();
         this.name = name;
+        leaveRecordFactory=new LeaveRecordFactory(name);
     }
 
     public ArrayList<FaceInformation> getStudentsFace() {
@@ -85,5 +84,9 @@ public class MyClass {
 
     public String getName() {
         return name;
+    }
+
+    public LeaveRecordFactory getLeaveRecordFactory() {
+        return leaveRecordFactory;
     }
 }

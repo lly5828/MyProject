@@ -1,6 +1,5 @@
 package servlet.student;
 
-import MyInterface.InterfaceToWeb;
 import basicClass.Student;
 import com.google.gson.Gson;
 

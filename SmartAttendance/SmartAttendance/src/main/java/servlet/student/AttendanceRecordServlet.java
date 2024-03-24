@@ -1,10 +1,9 @@
 package servlet.student;
 
+import MyInterface.info.AttendanceInfo;
 import MyInterface.InterfaceToWeb;
 import basicClass.*;
-import com.google.gson.Gson;
-
-import javax.servlet.ServletException;
+import servlet.JsonData;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,29 +17,20 @@ import java.util.ArrayList;
 public class AttendanceRecordServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String stuID = req.getParameter("studentID");
         Student student = InterfaceToWeb.getStudent(stuID);
-
-//        Student testStu=new Student("xxx","xxx",true,"123");
-//        testStu.addAttendanceRecord(SchoolTime.getNowSchoolTime(),"aaa", Status.normal);
-//        testStu.addAttendanceRecord(new SchoolTime(1,1, DayTime.afternoon1),"bbb", Status.normal);
-
-        ArrayList<AttendanceRecord> attendanceRecords=InterfaceToWeb.getAttendanceRecord(student);
-
-        Gson gson = new Gson();
-        String json = gson.toJson(attendanceRecords);
-        resp.getWriter().write(json);
-
-        req.setAttribute("student", student);
-        req.getRequestDispatcher("/StudentMainServlet").forward(req, resp);
-
-
+        //
+        Student testStu=new Student("xxx","xxx",true,"123");
+        //
+        ArrayList<AttendanceInfo> attendanceInfos =InterfaceToWeb.attendanceSituation(testStu);
+        JsonData<ArrayList<AttendanceInfo>> jsonAttendanceSituation=new JsonData<>(0,"success", attendanceInfos);
+        jsonAttendanceSituation.postData(resp);
     }
 
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         this.doGet(req, resp);
     }
 }

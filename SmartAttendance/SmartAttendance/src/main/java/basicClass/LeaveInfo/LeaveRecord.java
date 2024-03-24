@@ -51,4 +51,16 @@ public class LeaveRecord {
             this.setLeaveResult(LeaveResult.fail);
         }
     }
+
+    public SchoolTime getStartTime() {
+        return startTime;
+    }
+
+    public int getLeaveRecordNum() {
+        return leaveRecordNum;
+    }
+
+    public String getReason() {
+        return reason;
+    }
 }

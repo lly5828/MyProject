@@ -1,12 +1,10 @@
 package servlet.student;
 
 import MyInterface.InterfaceToWeb;
+import MyInterface.info.StudentInfo;
 import basicClass.Student;
-import com.google.gson.Gson;
-
+import servlet.JsonData;
 import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,31 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginStuServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         String stuID = req.getParameter("studentID");
         Student student = InterfaceToWeb.getStudent(stuID);
-
+        JsonData<StudentInfo> jsonStudentInfo;
         if (!student.getName().equals(name)) student = null;
         if (student == null) {
-            resp.getWriter().write("fail");
-//            req.getRequestDispatcher("返回登陆页面").forward(req, resp);
+            jsonStudentInfo=new JsonData<>(1,"fail",new StudentInfo(student));
         } else {
-//            System.out.println("success");
-            Gson gson=new Gson();
-            String json=gson.toJson(student);
-            resp.getWriter().write(json);
-
-            req.setAttribute("student", student);
-            req.getRequestDispatcher("/StudentMainServlet").forward(req, resp);
+            jsonStudentInfo=new JsonData<>(0,"success",new StudentInfo(student));
         }
-
-
+        jsonStudentInfo.postData(resp);
     }
 
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         this.doGet(req, resp);
     }
 }

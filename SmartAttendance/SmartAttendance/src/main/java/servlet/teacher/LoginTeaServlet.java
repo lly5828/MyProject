@@ -1,11 +1,8 @@
 package servlet.teacher;
 
 import MyInterface.InterfaceToWeb;
-import basicClass.Student;
 import basicClass.Teacher;
-import com.google.gson.Gson;
-
-import javax.servlet.ServletException;
+import servlet.JsonData;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,37 +15,24 @@ import java.io.IOException;
 public class LoginTeaServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         String teaID = req.getParameter("teacherID");
 
-        System.out.println(name);
-        System.out.println(teaID);
         Teacher teacher = InterfaceToWeb.getTeacher(teaID);
         if (!teacher.getName().equals(name)) teacher = null;
-        if (teaID == null) {
-            System.out.println("fail");
-            resp.getWriter().write("fail");
-//            req.getRequestDispatcher("返回登陆页面").forward(req, resp);
+        JsonData<Teacher> jsonTeacher;
+        if (teacher == null) {
+            jsonTeacher=new JsonData<>(1,"fail",teacher);
         } else {
-            System.out.println("success");
-            Gson gson = new Gson();
-            String json = gson.toJson(teacher);
-            System.out.println(json);
-//            resp.getWriter().write("success");
-            resp.getWriter().write(json);
-
-
-//            req.setAttribute("student", student);
-//            req.getRequestDispatcher("进入学生页面").forward(req, resp);
+            jsonTeacher=new JsonData<>(0,"success",teacher);
         }
-
-
+        jsonTeacher.postData(resp);
     }
 
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         this.doGet(req, resp);
     }
 }
