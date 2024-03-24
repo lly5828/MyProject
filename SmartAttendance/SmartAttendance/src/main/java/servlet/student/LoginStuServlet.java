@@ -22,9 +22,8 @@ public class LoginStuServlet extends HttpServlet {
         String stuID = req.getParameter("studentID");
         Student student = InterfaceToWeb.getStudent(stuID);
         JsonData<StudentInfo> jsonStudentInfo;
-        if (!student.getName().equals(name)) student = null;
-        if (student == null) {
-            jsonStudentInfo=new JsonData<>(1,"fail",new StudentInfo(student));
+        if (!student.getName().equals(name)) {
+            jsonStudentInfo=new JsonData<>(1,"fail");
         } else {
             jsonStudentInfo=new JsonData<>(0,"success",new StudentInfo(student));
         }

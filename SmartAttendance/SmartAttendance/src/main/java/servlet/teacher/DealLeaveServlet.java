@@ -30,7 +30,7 @@ public class DealLeaveServlet extends HttpServlet {
             jsonDealLeave=new JsonData<>(1,"no apply need to deal");
         } else {
             try {
-                int leaveRecordNum = Integer.parseInt(req.getParameter("LeaveRecordNum"));
+                int leaveRecordNum = Integer.parseInt(req.getParameter("leaveRecordNum"));
                 String result = req.getParameter("result");
                 if (result.equals("true")) {
                     InterfaceToWeb.dealLeaveRecord(teacher, leaveRecordNum, true);

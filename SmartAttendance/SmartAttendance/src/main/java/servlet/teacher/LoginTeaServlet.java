@@ -1,6 +1,7 @@
 package servlet.teacher;
 
 import MyInterface.InterfaceToWeb;
+import MyInterface.info.TeacherInfo;
 import basicClass.Teacher;
 import servlet.JsonData;
 import javax.servlet.annotation.WebServlet;
@@ -18,14 +19,12 @@ public class LoginTeaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         String teaID = req.getParameter("teacherID");
-
         Teacher teacher = InterfaceToWeb.getTeacher(teaID);
-        if (!teacher.getName().equals(name)) teacher = null;
-        JsonData<Teacher> jsonTeacher;
-        if (teacher == null) {
-            jsonTeacher=new JsonData<>(1,"fail",teacher);
+        JsonData<TeacherInfo> jsonTeacher;
+        if (!teacher.getName().equals(name)) {
+            jsonTeacher=new JsonData<>(1,"fail");
         } else {
-            jsonTeacher=new JsonData<>(0,"success",teacher);
+            jsonTeacher=new JsonData<>(0,"success",new TeacherInfo(teacher));
         }
         jsonTeacher.postData(resp);
     }
