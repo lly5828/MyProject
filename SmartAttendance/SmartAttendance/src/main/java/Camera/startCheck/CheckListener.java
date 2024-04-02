@@ -1,6 +1,7 @@
 package Camera.startCheck;
 
 import basicClass.MyClass;
+import basicClass.SchoolTime;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

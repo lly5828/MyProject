@@ -1,0 +1,115 @@
+-- 创建Person表
+CREATE TABLE Person (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    faceInformationId INT,
+    phoneNumber VARCHAR(20),
+    sex BOOLEAN
+    );
+-- 创建Manager表
+CREATE TABLE Manager (
+ 
+);
+
+
+-----------------------------------------------------------------------------------------
+
+
+
+-- 创建FaceInformation表
+CREATE TABLE FaceInformation (
+    id INT  PRIMARY KEY AUTO_INCREMENT,
+    PhotoPath VARCHAR(255)
+);
+
+-- 创建LeaveRecord表
+CREATE TABLE LeaveRecord (
+    leaveRecordNum INT PRIMARY KEY,
+    studentApplyId INT,
+    teacherDealId INT,
+    startTimeId INT,
+    endTimeId INT,
+    factoryId INT,
+    reason VARCHAR(255),
+    leaveResult ENUM('waiting', 'pass', 'fail')
+);
+
+-- 创建LeaveRecordFactory表
+CREATE TABLE LeaveRecordFactory (
+id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+   recordCount INT
+);
+
+-- 创建AttendanceRecord表
+CREATE TABLE AttendanceRecord (
+    Id INT  PRIMARY KEY AUTO_INCREMENT,
+    timeId INT,
+    courseName VARCHAR(255),
+    status ENUM('normal', 'leave', 'absent','waiting')
+);
+
+-- 创建ClassRoom表
+CREATE TABLE ClassRoom (
+    id INT PRIMARY KEY,
+    courseId INT,
+    place VARCHAR(255)
+);
+
+-- 创建Course表
+CREATE TABLE Course (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    myClassId INT,
+    teacherId INT,
+    classRoomId INT
+);
+
+-- 创建CourseTime表
+CREATE TABLE CourseTime (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    dayInWeek INT,
+    dayTime ENUM('mRest0_1', 'morning1', 'mRest1_2', 'morning2', 'mRest2_3', 'morning3', 'mRest3_4', 'morning4', 'aRest0_1', 'afternoon1', 'aRest1_2', 'afternoon2', 'aRest2_3', 'afternoon3', 'aRest3_4', 'afternoon4', 'other')
+);
+
+-- 创建MyClass表
+CREATE TABLE MyClass (
+    id INT PRIMARY KEY,
+    studentId INT,
+    teacherId INT,
+    courseId INT,
+    name VARCHAR(255),
+    leaveRecordFactoryId INT
+);
+
+
+
+-- 创建Student表
+CREATE TABLE Student (
+    id INT PRIMARY KEY,
+    myClassId INT,
+    attendanceRecordId INT,
+    studentNumber VARCHAR(255),
+    status ENUM('normal', 'leave', 'absent'),
+    name varchar(255),
+    phoneNumber varchar(255),
+    sex int,
+    faceInmormationId int
+);
+
+-- 创建Teacher表
+CREATE TABLE Teacher (
+    id INT PRIMARY KEY,
+    teachClassId INT,
+    teachCourseId INT,
+    teacherNumber VARCHAR(255),
+    name varchar(255),
+    phoneNumber varchar(255),
+    sex int
+);
+--创建SchoolTime类
+CREATE TABLE SchoolTimeTable(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   week INT,
+   courseTimeId INT
+);

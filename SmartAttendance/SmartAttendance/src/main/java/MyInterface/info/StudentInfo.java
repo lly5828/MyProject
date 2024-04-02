@@ -4,6 +4,8 @@ import basicClass.MyClass;
 import basicClass.Status;
 import basicClass.Student;
 
+import java.sql.SQLException;
+
 public class StudentInfo {
     String name;
     boolean sex;
@@ -20,7 +22,7 @@ public class StudentInfo {
         this.studentNumber = studentNumber;
         this.status = status;
     }
-    public StudentInfo(Student student){
-        this(student.getName(),student.getSex(), student.getPhoneNumber(), student.getMyClass().getName(), student.getStudentNumber(), Status.normal);
+    public StudentInfo(Student student) throws SQLException {
+        this(student.getName(),student.getSex(), student.getPhoneNumber(), student.getMyClassBySQL().getName(), student.getStudentNumber(), Status.normal);
     }
 }

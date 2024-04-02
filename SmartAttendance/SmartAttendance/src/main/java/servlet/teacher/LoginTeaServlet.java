@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 //网址：http://localhost:8080/test/LoginTeaServlet
 
@@ -24,7 +25,11 @@ public class LoginTeaServlet extends HttpServlet {
         if (!teacher.getName().equals(name)) {
             jsonTeacher=new JsonData<>(1,"fail");
         } else {
-            jsonTeacher=new JsonData<>(0,"success",new TeacherInfo(teacher));
+            try {
+                jsonTeacher=new JsonData<>(0,"success",new TeacherInfo(teacher));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         jsonTeacher.postData(resp);
     }

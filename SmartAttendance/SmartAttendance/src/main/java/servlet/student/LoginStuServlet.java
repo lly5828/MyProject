@@ -5,6 +5,7 @@ import MyInterface.info.StudentInfo;
 import basicClass.Student;
 import servlet.JsonData;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +23,14 @@ public class LoginStuServlet extends HttpServlet {
         String stuID = req.getParameter("studentID");
         Student student = InterfaceToWeb.getStudent(stuID);
         JsonData<StudentInfo> jsonStudentInfo;
-        if (!student.getName().equals(name)) {
+        if (student==null||(!student.getName().equals(name))) {
             jsonStudentInfo=new JsonData<>(1,"fail");
         } else {
-            jsonStudentInfo=new JsonData<>(0,"success",new StudentInfo(student));
+            try {
+                jsonStudentInfo=new JsonData<>(0,"success",new StudentInfo(student));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         jsonStudentInfo.postData(resp);
     }

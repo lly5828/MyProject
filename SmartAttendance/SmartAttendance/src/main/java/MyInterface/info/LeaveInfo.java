@@ -4,6 +4,8 @@ import MyInterface.InterfaceToWeb;
 import basicClass.*;
 import basicClass.LeaveInfo.LeaveRecord;
 
+import java.sql.SQLException;
+
 
 public class LeaveInfo {
     int leaveRecordNum;
@@ -13,9 +15,9 @@ public class LeaveInfo {
     String time;
     String reason;
 
-    public LeaveInfo(LeaveRecord leaveRecord) {
+    public LeaveInfo(LeaveRecord leaveRecord) throws SQLException {
         this(leaveRecord.getLeaveRecordNum(),leaveRecord.getStudent_apply().getName(),leaveRecord.getStudent_apply().getStudentNumber(),
-                leaveRecord.getStudent_apply().getMyClass().getName(), InterfaceToWeb.getDateBySchoolTime(leaveRecord.getStartTime()),leaveRecord.getReason());
+                leaveRecord.getStudent_apply().getMyClassBySQL().getName(), InterfaceToWeb.getDateBySchoolTime(leaveRecord.getStartTime()),leaveRecord.getReason());
     }
 
     public LeaveInfo(int leaveRecordNum,String student, String studentID, String myClass, String time, String reason) {

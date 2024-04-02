@@ -22,10 +22,13 @@ public class AskForLeaveServlet extends HttpServlet {
         String stuID = req.getParameter("studentID");
         String reason = req.getParameter("reason");
         String time = req.getParameter("time");
-        SchoolTime startTime = InterfaceToWeb.getDate(time, DayTime.morning1);
-        SchoolTime endTime = InterfaceToWeb.getDate(time, DayTime.afternoon4);
+//        SchoolTime startTime = InterfaceToWeb.getDate(time, DayTime.morning1);
+//        SchoolTime endTime = InterfaceToWeb.getDate(time, DayTime.afternoon4);
         Student student = InterfaceToWeb.getStudent(stuID);
-        int code = InterfaceToWeb.applyLeave(student, startTime, endTime, reason);
+        //
+        int code = InterfaceToWeb.applyLeave(student, SchoolTime.getNowSchoolTime(), reason);
+        //
+//        int code = InterfaceToWeb.applyLeave(student, startTime, endTime, reason);
         jsonAskForLeave = new JsonData<>(code, "finish");
         jsonAskForLeave.postData(resp);
     }

@@ -2,6 +2,8 @@ package MyInterface.info;
 
 import basicClass.Teacher;
 
+import java.sql.SQLException;
+
 public class TeacherInfo {
     String name;
     boolean sex;
@@ -18,7 +20,7 @@ public class TeacherInfo {
         this.teacherNum = teacherNum;
     }
 
-    public TeacherInfo(Teacher teacher) {
-        this(teacher.getName(), teacher.getSex(), teacher.getPhoneNumber(), teacher.getTeachClass().getName(),teacher.getTeacherNumber());
+    public TeacherInfo(Teacher teacher) throws SQLException {
+        this(teacher.getName(), teacher.getSex(), teacher.getPhoneNumber(), teacher.getTeachClassBySQL().getName(),teacher.getTeacherNumber());
     }
 }

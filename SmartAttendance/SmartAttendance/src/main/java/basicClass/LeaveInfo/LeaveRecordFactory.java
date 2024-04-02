@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LeaveRecordFactory {
+    int id;
     String name;
 
     HashMap<Integer,LeaveRecord> leaveRecords;
@@ -22,15 +23,27 @@ public class LeaveRecordFactory {
         recordCount=0;
     }
 
+    public LeaveRecordFactory() {
+    }
+
     public void addLeaveRecord(SchoolTime startTime, SchoolTime endTime, String reason, Student student_apply, Teacher teacher_deal){
         this.recordCount++;
         int leaveRecordNum=this.recordCount;
-        this.leaveRecords.put(recordCount,new LeaveRecord(leaveRecordNum, startTime, endTime, reason, student_apply, teacher_deal));
+        this.leaveRecords.put(recordCount,new LeaveRecord(leaveRecordNum, startTime, endTime, reason, student_apply,teacher_deal,this.getId()));
     }
     public void addLeaveRecord(SchoolTime schoolTime, String reason, Student student_apply, Teacher teacher_deal){
         addLeaveRecord(new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
                 new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_apply,teacher_deal);
     }
+    public LeaveRecord addLeaveRecordReturn(SchoolTime schoolTime, String reason, Student student_apply, Teacher teacher_deal){
+        this.recordCount++;
+        int leaveRecordNum=this.recordCount;
+        LeaveRecord leaveRecord=new LeaveRecord(leaveRecordNum,new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
+                new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_apply,teacher_deal,this.getId());
+        leaveRecords.put(recordCount,leaveRecord);
+        return leaveRecord;
+    }
+
 
 
 //    search by recordNum
@@ -43,12 +56,12 @@ public class LeaveRecordFactory {
     public ArrayList<LeaveRecord> getLeaveRecord(Student student){
         ArrayList<LeaveRecord> result=new ArrayList<>();
         for (LeaveRecord leaveRecord:leaveRecords.values()) {
-            if(leaveRecord.getStudent_apply().equals(student)){
+            if(leaveRecord.getStudent_apply().getStudentNumber().equals(student.getStudentNumber())){
                 result.add(leaveRecord);
             }
         }
         if(result.size()==0){
-            throw new MyException("The Student haven't Asked For Leave");
+//            throw new MyException("The Student haven't Asked For Leave");
         }
         return result;
     }
@@ -77,8 +90,35 @@ public class LeaveRecordFactory {
         return name;
     }
 
-
     public int getRecordCount() {
         return recordCount;
+    }
+
+    public static HashMap<Integer,LeaveRecord> arrayToHashMap(ArrayList<LeaveRecord> arrayList){
+        HashMap<Integer,LeaveRecord> hashMap=new HashMap<>();
+        for(LeaveRecord leaveRecord:arrayList){
+            hashMap.put(leaveRecord.getLeaveRecordNum(),leaveRecord);
+        }
+        return hashMap;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRecordCount(int recordCount) {
+        this.recordCount = recordCount;
+    }
+
+    public void setLeaveRecords(ArrayList<LeaveRecord> leaveRecordArrayList) {
+        this.leaveRecords=arrayToHashMap(leaveRecordArrayList);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

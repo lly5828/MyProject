@@ -20,7 +20,7 @@ public class Camera {
     }
     public  void takePhotoAndAnalyse(MyClass myClass,SchoolTime schoolTime){
                 String fileName=getPhoto();
-                analyse(myClass,schoolTime,myClass.getNextCourseByTime(schoolTime).getName(),fileName);
+                analyse(myClass,schoolTime,myClass.getNextCourseByTime(schoolTime),fileName);
     }
     private String getPhoto(){
         String fileName = "/opt/myProject/photoFromCamera/" + System.currentTimeMillis()+".png";
@@ -29,15 +29,15 @@ public class Camera {
         return fileName;
     }
 
-    private void analyse(MyClass myClass, SchoolTime schoolTime, String courseName,String fileName){
+    private void analyse(MyClass myClass, SchoolTime schoolTime, Course course,String fileName){
         Student student=myClass.ifThisClassStudent(faceController.addFace(fileName));
         if(student!=null){
             for(AttendanceRecord attendanceRecord:student.getAttendanceRecords()){
                 if(attendanceRecord.getTime().equals(schoolTime))return;
             }
 
-            student.addAttendanceRecord(schoolTime,courseName,Status.normal);
-            System.out.println(student.getName()+schoolTime+courseName+Status.normal);
+            student.addAttendanceRecord(schoolTime,course.getName(),course.getId(),Status.normal,student.getStudentNumber());
+//            System.out.println(student.getName()+schoolTime+courseName+Status.normal);
         }
     }
 

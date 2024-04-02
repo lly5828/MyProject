@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //网址：http://localhost:8080/test/AttendanceRecordServlet
@@ -21,9 +22,14 @@ public class AttendanceRecordServlet extends HttpServlet {
         String stuID = req.getParameter("studentID");
         Student student = InterfaceToWeb.getStudent(stuID);
         //
-        Student testStu=new Student("xxx","xxx",true,"123");
+//        Student testStu=new Student("xxx","xxx",true,"123");
         //
-        ArrayList<AttendanceInfo> attendanceInfos =InterfaceToWeb.attendanceSituation(testStu);
+        ArrayList<AttendanceInfo> attendanceInfos = null;
+        try {
+            attendanceInfos = InterfaceToWeb.attendanceSituation(student);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         JsonData<ArrayList<AttendanceInfo>> jsonAttendanceSituation=new JsonData<>(0,"success", attendanceInfos);
         jsonAttendanceSituation.postData(resp);
     }

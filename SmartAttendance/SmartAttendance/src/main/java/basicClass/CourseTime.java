@@ -5,9 +5,15 @@ import java.util.Objects;
 public class CourseTime {
     protected int dayInWeek;//7->1->2->.....->6
     protected DayTime dayTime;
+
+    int id;
+    int courseId;
     public CourseTime(int dayInWeek,DayTime dayTime){
         this.dayInWeek=dayInWeek;
         this.dayTime=dayTime;
+    }
+
+    public CourseTime() {
     }
 
     public int getDayInWeek() {
@@ -60,6 +66,18 @@ public class CourseTime {
         }
     }
 
+    public void setDayInWeek(int dayInWeek) {
+        this.dayInWeek = dayInWeek;
+    }
+
+    public void setDayTime(DayTime dayTime) {
+        this.dayTime = dayTime;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,5 +89,21 @@ public class CourseTime {
     @Override
     public int hashCode() {
         return Objects.hash(dayInWeek, dayTime);
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public DayTime getDayTime() {
+        return dayTime;
     }
 }

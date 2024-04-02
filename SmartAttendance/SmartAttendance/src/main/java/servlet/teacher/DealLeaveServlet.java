@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +26,12 @@ public class DealLeaveServlet extends HttpServlet {
         String teaID = req.getParameter("teacherID");
         Teacher teacher = InterfaceToWeb.getTeacher(teaID);
         JsonData<String> jsonDealLeave;
-        LeaveRecordFactory leaveRecordFactory = InterfaceToWeb.getLeaveRecord(teacher);
+        LeaveRecordFactory leaveRecordFactory = null;
+        try {
+            leaveRecordFactory = InterfaceToWeb.getLeaveRecord(teacher);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if (leaveRecordFactory == null) {
             jsonDealLeave=new JsonData<>(1,"no apply need to deal");
         } else {
@@ -53,7 +59,12 @@ public class DealLeaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String teaID=req.getParameter("teacherID");
         Teacher teacher = InterfaceToWeb.getTeacher(teaID);
-        MyClass myClass=teacher.getTeachClass();
+        MyClass myClass= null;
+        try {
+            myClass = teacher.getTeachClassBySQL();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         LeaveRecordFactory leaveRecordFactory=InterfaceToWeb.getLeaveRecordFactory(myClass);
         ArrayList<LeaveInfo> leaveInfos=InterfaceToWeb.factoryToLeaveInfo(leaveRecordFactory);
         JsonData<ArrayList<LeaveInfo>> jsonLeaveInfo;

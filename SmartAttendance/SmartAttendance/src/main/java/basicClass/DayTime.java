@@ -1,9 +1,7 @@
 package basicClass;
 
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+
 
 //上课时间
 public enum DayTime {
@@ -26,26 +24,38 @@ public enum DayTime {
     afternoon4,//下午第四节-----17:00->17:40
     other;
 
-    public static DayTime getNowDayTime(){
-        LocalTime localTime=LocalTime.now();
-        int hour=localTime.getHour();
-        int minute= localTime.getMinute();
-        switch (hour){
-            case 7:return minute<40?other:mRest0_1;
-            case 8:return minute<40?morning1:mRest1_2;
-            case 9:return minute<40?morning2:mRest2_3;
-            case 10:return minute<40?morning3:mRest3_4;
-            case 11:return minute<40?morning1:other;
-            case 13:return minute<40?other:aRest0_1;
-            case 14:return minute<40?afternoon1:aRest1_2;
-            case 15:return minute<40?afternoon2:aRest2_3;
-            case 16:return minute<40?afternoon3:aRest3_4;
-            case 17:return minute<40?afternoon4:other;
-            default:return other;
+    public static DayTime getNowDayTime() {
+        LocalTime localTime = LocalTime.now();
+        int hour = localTime.getHour();
+        int minute = localTime.getMinute();
+        switch (hour) {
+            case 7:
+                return minute < 40 ? other : mRest0_1;
+            case 8:
+                return minute < 40 ? morning1 : mRest1_2;
+            case 9:
+                return minute < 40 ? morning2 : mRest2_3;
+            case 10:
+                return minute < 40 ? morning3 : mRest3_4;
+            case 11:
+                return minute < 40 ? morning1 : other;
+            case 13:
+                return minute < 40 ? other : aRest0_1;
+            case 14:
+                return minute < 40 ? afternoon1 : aRest1_2;
+            case 15:
+                return minute < 40 ? afternoon2 : aRest2_3;
+            case 16:
+                return minute < 40 ? afternoon3 : aRest3_4;
+            case 17:
+                return minute < 40 ? afternoon4 : other;
+            default:
+                return other;
         }
     }
-    public static DayTime nextDayTime(DayTime dayTime) {
-        switch (dayTime) {
+
+    public DayTime nextCourseDayTime() {
+        switch (this) {
             case morning1:
                 return DayTime.morning2;
             case morning2:
@@ -62,6 +72,108 @@ public enum DayTime {
                 return DayTime.afternoon4;
             default:
                 return null;
+        }
+    }
+
+    public int courseToNumber() {
+        switch (this) {
+            case morning1:
+                return 1;
+            case morning2:
+                return 2;
+            case morning3:
+                return 3;
+            case morning4:
+                return 4;
+            case afternoon1:
+                return 5;
+            case afternoon2:
+                return 6;
+            case afternoon3:
+                return 7;
+            case afternoon4:
+                return 8;
+            default:
+                return 0;
+        }
+    }
+
+    public int dayTimeToNumber() {
+        switch (this) {
+            case mRest0_1:
+                return 0;
+            case morning1:
+                return 1;
+            case mRest1_2:
+                return 2;
+            case morning2:
+                return 3;
+            case mRest2_3:
+                return 4;
+            case morning3:
+                return 5;
+            case mRest3_4:
+                return 6;
+            case morning4:
+                return 7;
+            case aRest0_1:
+                return 8;
+            case afternoon1:
+                return 9;
+            case aRest1_2:
+                return 10;
+            case afternoon2:
+                return 11;
+            case aRest2_3:
+                return 12;
+            case afternoon3:
+                return 13;
+            case aRest3_4:
+                return 14;
+            case afternoon4:
+                return 15;
+            default:
+                return 16;
+        }
+    }
+
+
+    public static DayTime numberToDayTime(int n) {
+        switch (n) {
+            case 0:
+                return mRest0_1;
+            case 1:
+                return morning1;
+            case 2:
+                return mRest1_2;
+            case 3:
+                return morning2;
+            case 4:
+                return mRest2_3;
+            case 5:
+                return morning3;
+            case 6:
+                return mRest3_4;
+            case 7:
+                return morning4;
+            case 8:
+                return aRest0_1;
+            case 9:
+                return afternoon1;
+            case 10:
+                return aRest1_2;
+            case 11:
+                return afternoon2;
+            case 12:
+                return aRest2_3;
+            case 13:
+                return afternoon3;
+            case 14:
+                return aRest3_4;
+            case 15:
+                return afternoon4;
+            default:
+                return other;
         }
     }
 

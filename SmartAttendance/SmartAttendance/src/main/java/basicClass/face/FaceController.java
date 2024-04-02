@@ -6,6 +6,7 @@ import com.arcsoft.face.enums.ErrorInfo;
 import com.arcsoft.face.enums.ImageFormat;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
+import exception.MyException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class FaceController {
 
     private static final float SAME_RATE=0.7F;
 
-    public FaceController() {
+    public FaceController(){
         String appId = "5JU3BrWkw7PCYKMAyB3F1ZC5Ba1qRkPW9wejrW1vBt2z";
         String sdkKey = "6mS9DQM2QmNWjokWmFQE2iwYj86u7ub2SF1SC4f9zcuA";
         this.faceEngine = new FaceEngine("/opt/myProject/ArcSoft_ArcFace_Java_Linux_x64_V3.0/libs/LINUX64");
@@ -32,6 +33,7 @@ public class FaceController {
 
         if (errorCode != ErrorInfo.MOK.getValue() && errorCode != ErrorInfo.MERR_ASF_ALREADY_ACTIVATED.getValue()) {
             System.out.println("引擎激活失败");
+            throw new MyException("引擎激活失败");
         }
 
 

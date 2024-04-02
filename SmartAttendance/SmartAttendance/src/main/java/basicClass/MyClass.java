@@ -7,12 +7,23 @@ import basicClass.face.FaceInformation;
 import java.util.ArrayList;
 
 public class MyClass {
+    protected int id;
+
     String name;
     ArrayList<Student> students;
     ArrayList<Course> courses;
     Teacher teacher;
     Course[][] courseTable;
     LeaveRecordFactory leaveRecordFactory;
+    int leaveRecordFactoryId;
+
+    public void setLeaveRecordFactoryId(int leaveRecordFactoryId) {
+        this.leaveRecordFactoryId = leaveRecordFactoryId;
+    }
+
+    public int getLeaveRecordFactoryId() {
+        return leaveRecordFactoryId;
+    }
 
     public void showCourseTable() {
         System.out.println("Class" + this.name + "Course Table");
@@ -23,15 +34,23 @@ public class MyClass {
 //        }
     }
 
-    public void setCourse(SchoolTime schoolTime, Course course) {
 
+    public void setCourse(Course course){
+        this.courses.add(course);
+    }
+    public void initCourseTable(){
+        for(Course course:this.courses){
+            for(CourseTime courseTime: course.getCourseTimes()){
+                courseTable[courseTime.getDayInWeek()][courseTime.getDayTimeNumber()]=course;
+            }
+        }
     }
 
     public MyClass() {
         courses = new ArrayList<>();
         students = new ArrayList<>();
-        courseTable = new Course[8][9];//课程表从courseTable[1][1]开始用，横向为周几，竖向为第几节课
-        for (int i = 0; i < 8; i++) {
+        courseTable = new Course[6][9];//课程表从courseTable[1][1]开始用，横向为周几，竖向为第几节课
+        for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 9; j++) {
                 courseTable[i][j] = new Course("empty");
             }
@@ -88,5 +107,46 @@ public class MyClass {
 
     public LeaveRecordFactory getLeaveRecordFactory() {
         return leaveRecordFactory;
+    }
+
+//    public Teacher getTeacher() {
+//        return teacher;
+//    }
+
+    public Course[][] getCourseTable() {
+        return courseTable;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        leaveRecordFactory=new LeaveRecordFactory(name);
+    }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+
+    public void setLeaveRecordFactory(LeaveRecordFactory leaveRecordFactory) {
+        this.leaveRecordFactory = leaveRecordFactory;
     }
 }
