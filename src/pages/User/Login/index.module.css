@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: auto;
+    background-image: url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr');
+    background-size: 100% 100%;
+}
+
+.BackeBox {
+    width: 400px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginFrom {
+    width: 400px;
+    padding: 52px;
+    backdrop-filter: blur(90px);
+    /* 设置毛玻璃效果的模糊程度 */
+    border-radius: 10px;
+}
+
+.FromBox {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+    font-size: 32px;
+}

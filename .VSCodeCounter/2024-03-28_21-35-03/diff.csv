@@ -1,0 +1,27 @@
+"filename", "language", "JavaScript", "JSON with Comments", "TypeScript", "JavaScript JSX", "JSON", "Markdown", "YAML", "comment", "blank", "total"
+"d:\Automatic roll call system\automatic\.eslintrc.js", "JavaScript", -7, 0, 0, 0, 0, 0, 0, 0, -1, -8
+"d:\Automatic roll call system\automatic\.prettierrc.js", "JavaScript", -21, 0, 0, 0, 0, 0, 0, 0, -1, -22
+"d:\Automatic roll call system\automatic\README.md", "Markdown", 0, 0, 0, 0, 0, -37, 0, 0, -22, -59
+"d:\Automatic roll call system\automatic\config\config.ts", "TypeScript", 0, 0, -56, 0, 0, 0, 0, -97, -4, -157
+"d:\Automatic roll call system\automatic\config\defaultSettings.ts", "TypeScript", 0, 0, -39, 0, 0, 0, 0, -7, -2, -48
+"d:\Automatic roll call system\automatic\config\oneapi.json", "JSON", 0, 0, 0, 0, -593, 0, 0, 0, -1, -594
+"d:\Automatic roll call system\automatic\config\proxy.ts", "TypeScript", 0, 0, -21, 0, 0, 0, 0, -28, -2, -51
+"d:\Automatic roll call system\automatic\config\routes.ts", "TypeScript", 0, 0, -37, 0, 0, 0, 0, -33, -2, -72
+"d:\Automatic roll call system\automatic\jest.config.ts", "TypeScript", 0, 0, -21, 0, 0, 0, 0, 0, -3, -24
+"d:\Automatic roll call system\automatic\jsconfig.json", "JSON with Comments", 0, -11, 0, 0, 0, 0, 0, 0, -1, -12
+"d:\Automatic roll call system\automatic\mock\listTableList.ts", "TypeScript", 0, 0, -160, 0, 0, 0, 0, -2, -15, -177
+"d:\Automatic roll call system\automatic\mock\notices.ts", "TypeScript", 0, 0, -113, 0, 0, 0, 0, 0, -3, -116
+"d:\Automatic roll call system\automatic\mock\requestRecord.mock.js", "JavaScript", -324, 0, 0, 0, 0, 0, 0, 0, -1, -325
+"d:\Automatic roll call system\automatic\mock\route.ts", "TypeScript", 0, 0, -5, 0, 0, 0, 0, 0, -1, -6
+"d:\Automatic roll call system\automatic\mock\user.ts", "TypeScript", 0, 0, -187, 0, 0, 0, 0, -8, -9, -204
+"d:\Automatic roll call system\automatic\package.json", "JSON", 0, 0, 0, 0, -104, 0, 0, 0, -1, -105
+"d:\Automatic roll call system\automatic\pnpm-lock.yaml", "YAML", 0, 0, 0, 0, 0, 0, -17642, 0, -2255, -19897
+"d:\Automatic roll call system\automatic\public\scripts\loading.js", "JavaScript", -179, 0, 0, 0, 0, 0, 0, -4, -20, -203
+"d:\Automatic roll call system\automatic\tests\setupTests.jsx", "JavaScript JSX", 0, 0, 0, -57, 0, 0, 0, -2, -6, -65
+"d:\Automatic roll call system\automatic\tsconfig.json", "JSON with Comments", 0, -23, 0, 0, 0, 0, 0, 0, -1, -24
+"d:\Automatic roll call system\automatic\types\cache\cache.json", "JSON", 0, 0, 0, 0, -1, 0, 0, 0, -1, -2
+"d:\Automatic roll call system\automatic\types\cache\login.cache.json", "JSON", 0, 0, 0, 0, -386, 0, 0, 0, -1, -387
+"d:\Automatic roll call system\automatic\types\cache\mock\login.mock.cache.js", "JavaScript", -324, 0, 0, 0, 0, 0, 0, 0, -1, -325
+"d:\Automatic roll call system\automatic\types\cache\mock\mock.cache.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, -1, -1
+"d:\Automatic roll call system\automatic\types\index.d.ts", "TypeScript", 0, 0, -84, 0, 0, 0, 0, -25, -12, -121
+"Total", "-", -855, -34, -723, -57, -1084, -37, -17642, -206, -2367, -23005

@@ -1,0 +1,175 @@
+Date : 2024-03-28 21:35:03
+Directory : d:\Automatic roll call system\automatic\src
+Total : 107 files,  4734 codes, 441 comments, 323 blanks, all 5498 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript     |         80 |      2,829 |        205 |        186 |      3,220 |
+| TypeScript JSX |         21 |      1,720 |        210 |        112 |      2,042 |
+| CSS            |          3 |         79 |          4 |         10 |         93 |
+| Less           |          1 |         47 |          0 |          7 |         54 |
+| JavaScript     |          1 |         37 |         22 |          7 |         66 |
+| JSON           |          1 |         22 |          0 |          1 |         23 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                   | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                      |        107 |      4,734 |        441 |        323 |      5,498 |
+| . (Files)                                                                              |          8 |        388 |        143 |         39 |        570 |
+| components                                                                             |          8 |        318 |         13 |         34 |        365 |
+| components (Files)                                                                     |          1 |          6 |          7 |          2 |         15 |
+| components\CardT                                                                       |          2 |         51 |          0 |          4 |         55 |
+| components\Footer                                                                      |          1 |         33 |          0 |          3 |         36 |
+| components\HeaderDropdown                                                              |          1 |         23 |          0 |          5 |         28 |
+| components\RightContent                                                                |          2 |        133 |          5 |         18 |        156 |
+| components\Table                                                                       |          1 |         72 |          1 |          2 |         75 |
+| layout                                                                                 |          1 |         86 |          0 |          3 |         89 |
+| locales                                                                                |         64 |      2,104 |          0 |         72 |      2,176 |
+| locales (Files)                                                                        |          8 |        182 |          0 |         16 |        198 |
+| locales\bn-BD                                                                          |          7 |        241 |          0 |          7 |        248 |
+| locales\en-US                                                                          |          7 |        241 |          0 |          7 |        248 |
+| locales\fa-IR                                                                          |          7 |        242 |          0 |          7 |        249 |
+| locales\id-ID                                                                          |          7 |        245 |          0 |          7 |        252 |
+| locales\ja-JP                                                                          |          7 |        240 |          0 |          7 |        247 |
+| locales\pt-BR                                                                          |          7 |        245 |          0 |          7 |        252 |
+| locales\zh-CN                                                                          |          7 |        235 |          0 |          7 |        242 |
+| locales\zh-TW                                                                          |          7 |        233 |          0 |          7 |        240 |
+| pages                                                                                  |         14 |      1,226 |        114 |         72 |      1,412 |
+| pages (Files)                                                                          |          2 |         24 |         45 |          9 |         78 |
+| pages\Course                                                                           |          1 |         10 |          9 |          2 |         21 |
+| pages\Home                                                                             |          2 |        157 |          4 |          7 |        168 |
+| pages\Message                                                                          |          1 |         52 |         15 |          2 |         69 |
+| pages\Stu                                                                              |          2 |        130 |          4 |         14 |        148 |
+| pages\Stu\Apply                                                                        |          1 |         68 |          0 |          5 |         73 |
+| pages\Stu\Inquire                                                                      |          1 |         62 |          4 |          9 |         75 |
+| pages\TableList                                                                        |          2 |        561 |         29 |         18 |        608 |
+| pages\TableList (Files)                                                                |          1 |        356 |         29 |         13 |        398 |
+| pages\TableList\components                                                             |          1 |        205 |          0 |          5 |        210 |
+| pages\Tea                                                                              |          2 |        148 |          0 |         10 |        158 |
+| pages\Tea\Adjust                                                                       |          1 |         52 |          0 |          3 |         55 |
+| pages\Tea\Handle                                                                       |          1 |         96 |          0 |          7 |        103 |
+| pages\User                                                                             |          2 |        144 |          8 |         10 |        162 |
+| pages\User\Login                                                                       |          2 |        144 |          8 |         10 |        162 |
+| services                                                                               |         12 |        612 |        171 |        103 |        886 |
+| services\ant-design-pro                                                                |          4 |        178 |         29 |         24 |        231 |
+| services\swagger                                                                       |          5 |        322 |         59 |         49 |        430 |
+| services\user                                                                          |          3 |        112 |         83 |         30 |        225 |
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                               | language       | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| d:\Automatic roll call system\automatic\src\access.ts                                  | TypeScript     |          8 |          3 |          1 |         12 |
+| d:\Automatic roll call system\automatic\src\app.tsx                                    | TypeScript JSX |         98 |         85 |          8 |        191 |
+| d:\Automatic roll call system\automatic\src\components\CardT\index.module.css          | CSS            |         21 |          0 |          2 |         23 |
+| d:\Automatic roll call system\automatic\src\components\CardT\index.tsx                 | TypeScript JSX |         30 |          0 |          2 |         32 |
+| d:\Automatic roll call system\automatic\src\components\Footer\index.tsx                | TypeScript JSX |         33 |          0 |          3 |         36 |
+| d:\Automatic roll call system\automatic\src\components\HeaderDropdown\index.tsx        | TypeScript JSX |         23 |          0 |          5 |         28 |
+| d:\Automatic roll call system\automatic\src\components\RightContent\AvatarDropdown.tsx | TypeScript JSX |        105 |          5 |         14 |        124 |
+| d:\Automatic roll call system\automatic\src\components\RightContent\index.tsx          | TypeScript JSX |         28 |          0 |          4 |         32 |
+| d:\Automatic roll call system\automatic\src\components\Table\index.tsx                 | TypeScript JSX |         72 |          1 |          2 |         75 |
+| d:\Automatic roll call system\automatic\src\components\index.ts                        | TypeScript     |          6 |          7 |          2 |         15 |
+| d:\Automatic roll call system\automatic\src\global.less                                | Less           |         47 |          0 |          7 |         54 |
+| d:\Automatic roll call system\automatic\src\global.tsx                                 | TypeScript JSX |         77 |          9 |          7 |         93 |
+| d:\Automatic roll call system\automatic\src\layout\index.tsx                           | TypeScript JSX |         86 |          0 |          3 |         89 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD.ts                           | TypeScript     |         24 |          0 |          2 |         26 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\pages.ts                     | TypeScript     |         70 |          0 |          1 |         71 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\pwa.ts                       | TypeScript     |          7 |          0 |          1 |          8 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\settingDrawer.ts             | TypeScript     |         31 |          0 |          1 |         32 |
+| d:\Automatic roll call system\automatic\src\locales\bn-BD\settings.ts                  | TypeScript     |         59 |          0 |          1 |         60 |
+| d:\Automatic roll call system\automatic\src\locales\en-US.ts                           | TypeScript     |         23 |          0 |          2 |         25 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\pages.ts                     | TypeScript     |         70 |          0 |          1 |         71 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\pwa.ts                       | TypeScript     |          6 |          0 |          1 |          7 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\settingDrawer.ts             | TypeScript     |         31 |          0 |          1 |         32 |
+| d:\Automatic roll call system\automatic\src\locales\en-US\settings.ts                  | TypeScript     |         60 |          0 |          1 |         61 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR.ts                           | TypeScript     |         23 |          0 |          2 |         25 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\pages.ts                     | TypeScript     |         69 |          0 |          1 |         70 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\pwa.ts                       | TypeScript     |          7 |          0 |          1 |          8 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\settingDrawer.ts             | TypeScript     |         32 |          0 |          1 |         33 |
+| d:\Automatic roll call system\automatic\src\locales\fa-IR\settings.ts                  | TypeScript     |         60 |          0 |          1 |         61 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID.ts                           | TypeScript     |         24 |          0 |          2 |         26 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\pages.ts                     | TypeScript     |         72 |          0 |          1 |         73 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\pwa.ts                       | TypeScript     |          7 |          0 |          1 |          8 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\settingDrawer.ts             | TypeScript     |         32 |          0 |          1 |         33 |
+| d:\Automatic roll call system\automatic\src\locales\id-ID\settings.ts                  | TypeScript     |         60 |          0 |          1 |         61 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP.ts                           | TypeScript     |         23 |          0 |          2 |         25 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\pages.ts                     | TypeScript     |         69 |          0 |          1 |         70 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\pwa.ts                       | TypeScript     |          7 |          0 |          1 |          8 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\settingDrawer.ts             | TypeScript     |         31 |          0 |          1 |         32 |
+| d:\Automatic roll call system\automatic\src\locales\ja-JP\settings.ts                  | TypeScript     |         59 |          0 |          1 |         60 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR.ts                           | TypeScript     |         21 |          0 |          2 |         23 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\pages.ts                     | TypeScript     |         72 |          0 |          1 |         73 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\pwa.ts                       | TypeScript     |          7 |          0 |          1 |          8 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\settingDrawer.ts             | TypeScript     |         32 |          0 |          1 |         33 |
+| d:\Automatic roll call system\automatic\src\locales\pt-BR\settings.ts                  | TypeScript     |         60 |          0 |          1 |         61 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN.ts                           | TypeScript     |         23 |          0 |          2 |         25 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\menu.ts                      | TypeScript     |         54 |          0 |          1 |         55 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\pages.ts                     | TypeScript     |         67 |          0 |          1 |         68 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\pwa.ts                       | TypeScript     |          6 |          0 |          1 |          7 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\settingDrawer.ts             | TypeScript     |         31 |          0 |          1 |         32 |
+| d:\Automatic roll call system\automatic\src\locales\zh-CN\settings.ts                  | TypeScript     |         55 |          0 |          1 |         56 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW.ts                           | TypeScript     |         21 |          0 |          2 |         23 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\component.ts                 | TypeScript     |          5 |          0 |          1 |          6 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\globalHeader.ts              | TypeScript     |         17 |          0 |          1 |         18 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\menu.ts                      | TypeScript     |         52 |          0 |          1 |         53 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\pages.ts                     | TypeScript     |         67 |          0 |          1 |         68 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\pwa.ts                       | TypeScript     |          6 |          0 |          1 |          7 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\settingDrawer.ts             | TypeScript     |         31 |          0 |          1 |         32 |
+| d:\Automatic roll call system\automatic\src\locales\zh-TW\settings.ts                  | TypeScript     |         55 |          0 |          1 |         56 |
+| d:\Automatic roll call system\automatic\src\manifest.json                              | JSON           |         22 |          0 |          1 |         23 |
+| d:\Automatic roll call system\automatic\src\pages\404.tsx                              | TypeScript JSX |         16 |          1 |          3 |         20 |
+| d:\Automatic roll call system\automatic\src\pages\Admin.tsx                            | TypeScript JSX |          8 |         44 |          6 |         58 |
+| d:\Automatic roll call system\automatic\src\pages\Course\index.tsx                     | TypeScript JSX |         10 |          9 |          2 |         21 |
+| d:\Automatic roll call system\automatic\src\pages\Home\index.module.css                | CSS            |         25 |          3 |          4 |         32 |
+| d:\Automatic roll call system\automatic\src\pages\Home\index.tsx                       | TypeScript JSX |        132 |          1 |          3 |        136 |
+| d:\Automatic roll call system\automatic\src\pages\Message\index.tsx                    | TypeScript JSX |         52 |         15 |          2 |         69 |
+| d:\Automatic roll call system\automatic\src\pages\Stu\Apply\index.tsx                  | TypeScript JSX |         68 |          0 |          5 |         73 |
+| d:\Automatic roll call system\automatic\src\pages\Stu\Inquire\index.tsx                | TypeScript JSX |         62 |          4 |          9 |         75 |
+| d:\Automatic roll call system\automatic\src\pages\TableList\components\UpdateForm.tsx  | TypeScript JSX |        205 |          0 |          5 |        210 |
+| d:\Automatic roll call system\automatic\src\pages\TableList\index.tsx                  | TypeScript JSX |        356 |         29 |         13 |        398 |
+| d:\Automatic roll call system\automatic\src\pages\Tea\Adjust\index.tsx                 | TypeScript JSX |         52 |          0 |          3 |         55 |
+| d:\Automatic roll call system\automatic\src\pages\Tea\Handle\index.tsx                 | TypeScript JSX |         96 |          0 |          7 |        103 |
+| d:\Automatic roll call system\automatic\src\pages\User\Login\index.module.css          | CSS            |         33 |          1 |          4 |         38 |
+| d:\Automatic roll call system\automatic\src\pages\User\Login\index.tsx                 | TypeScript JSX |        111 |          7 |          6 |        124 |
+| d:\Automatic roll call system\automatic\src\requestErrorConfig.ts                      | TypeScript     |         80 |         24 |          6 |        110 |
+| d:\Automatic roll call system\automatic\src\service-worker.js                          | JavaScript     |         37 |         22 |          7 |         66 |
+| d:\Automatic roll call system\automatic\src\services\ant-design-pro\api.ts             | TypeScript     |         73 |         13 |          9 |         95 |
+| d:\Automatic roll call system\automatic\src\services\ant-design-pro\index.ts           | TypeScript     |          6 |          4 |          1 |         11 |
+| d:\Automatic roll call system\automatic\src\services\ant-design-pro\login.ts           | TypeScript     |         15 |          5 |          2 |         22 |
+| d:\Automatic roll call system\automatic\src\services\ant-design-pro\typings.d.ts       | TypeScript     |         84 |          7 |         12 |        103 |
+| d:\Automatic roll call system\automatic\src\services\swagger\index.ts                  | TypeScript     |          8 |          4 |          1 |         13 |
+| d:\Automatic roll call system\automatic\src\services\swagger\pet.ts                    | TypeScript     |        121 |         17 |         16 |        154 |
+| d:\Automatic roll call system\automatic\src\services\swagger\store.ts                  | TypeScript     |         36 |          8 |          5 |         49 |
+| d:\Automatic roll call system\automatic\src\services\swagger\typings.d.ts              | TypeScript     |         79 |         16 |         18 |        113 |
+| d:\Automatic roll call system\automatic\src\services\swagger\user.ts                   | TypeScript     |         78 |         14 |          9 |        101 |
+| d:\Automatic roll call system\automatic\src\services\user\api.ts                       | TypeScript     |         41 |         37 |         16 |         94 |
+| d:\Automatic roll call system\automatic\src\services\user\login.ts                     | TypeScript     |         29 |         12 |         10 |         51 |
+| d:\Automatic roll call system\automatic\src\services\user\typing.d.ts                  | TypeScript     |         42 |         34 |          4 |         80 |
+| d:\Automatic roll call system\automatic\src\typings.d.ts                               | TypeScript     |         19 |          0 |          2 |         21 |
+| Total                                                                                  |                |      4,734 |        441 |        323 |      5,498 |
++----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
