@@ -33,7 +33,7 @@ CREATE TABLE `AttendanceRecord` (
   `dayNo` int DEFAULT NULL,
   `timeNo` int DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50790 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51032 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `AttendanceRecord` (
 
 LOCK TABLES `AttendanceRecord` WRITE;
 /*!40000 ALTER TABLE `AttendanceRecord` DISABLE KEYS */;
-INSERT INTO `AttendanceRecord` VALUES (50670,NULL,NULL,'waiting',1,1,1,1,1),(50671,NULL,NULL,'normal',2,1,1,1,3),(50672,NULL,NULL,'normal',0,1,1,1,5),(50673,NULL,NULL,'waiting',0,1,1,1,7),(50674,NULL,NULL,'waiting',0,1,1,1,9),(50675,NULL,NULL,'waiting',0,1,1,1,11),(50676,NULL,NULL,'waiting',0,1,1,1,13),(50677,NULL,NULL,'waiting',0,1,1,1,15),(50678,NULL,NULL,'waiting',0,1,1,2,1),(50679,NULL,NULL,'waiting',2,1,1,2,3),(50680,NULL,NULL,'waiting',0,1,1,2,5),(50681,NULL,NULL,'waiting',0,1,1,2,7),(50682,NULL,NULL,'waiting',0,1,1,2,9),(50683,NULL,NULL,'waiting',0,1,1,2,11),(50684,NULL,NULL,'waiting',0,1,1,2,13),(50685,NULL,NULL,'waiting',0,1,1,2,15),(50686,NULL,NULL,'waiting',0,1,1,3,1),(50687,NULL,NULL,'waiting',0,1,1,3,3),(50688,NULL,NULL,'waiting',0,1,1,3,5),(50689,NULL,NULL,'waiting',0,1,1,3,7),(50690,NULL,NULL,'waiting',0,1,1,3,9),(50691,NULL,NULL,'waiting',1,1,1,3,11),(50692,NULL,NULL,'waiting',0,1,1,3,13),(50693,NULL,NULL,'waiting',0,1,1,3,15),(50694,NULL,NULL,'waiting',0,1,1,4,1),(50695,NULL,NULL,'waiting',0,1,1,4,3),(50696,NULL,NULL,'waiting',0,1,1,4,5),(50697,NULL,NULL,'waiting',0,1,1,4,7),(50698,NULL,NULL,'waiting',0,1,1,4,9),(50699,NULL,NULL,'waiting',0,1,1,4,11),(50700,NULL,NULL,'waiting',0,1,1,4,13),(50701,NULL,NULL,'waiting',0,1,1,4,15),(50702,NULL,NULL,'waiting',0,1,1,5,1),(50703,NULL,NULL,'waiting',0,1,1,5,3),(50704,NULL,NULL,'waiting',0,1,1,5,5),(50705,NULL,NULL,'waiting',0,1,1,5,7),(50706,NULL,NULL,'waiting',0,1,1,5,9),(50707,NULL,NULL,'waiting',0,1,1,5,11),(50708,NULL,NULL,'waiting',0,1,1,5,13),(50709,NULL,NULL,'waiting',0,1,1,5,15),(50710,NULL,NULL,'waiting',1,2,1,1,1),(50711,NULL,NULL,'waiting',2,2,1,1,3),(50712,NULL,NULL,'waiting',0,2,1,1,5),(50713,NULL,NULL,'waiting',0,2,1,1,7),(50714,NULL,NULL,'waiting',0,2,1,1,9),(50715,NULL,NULL,'waiting',0,2,1,1,11),(50716,NULL,NULL,'waiting',0,2,1,1,13),(50717,NULL,NULL,'waiting',0,2,1,1,15),(50718,NULL,NULL,'waiting',0,2,1,2,1),(50719,NULL,NULL,'waiting',2,2,1,2,3),(50720,NULL,NULL,'waiting',0,2,1,2,5),(50721,NULL,NULL,'waiting',0,2,1,2,7),(50722,NULL,NULL,'waiting',0,2,1,2,9),(50723,NULL,NULL,'waiting',0,2,1,2,11),(50724,NULL,NULL,'waiting',0,2,1,2,13),(50725,NULL,NULL,'waiting',0,2,1,2,15),(50726,NULL,NULL,'waiting',0,2,1,3,1),(50727,NULL,NULL,'waiting',0,2,1,3,3),(50728,NULL,NULL,'waiting',0,2,1,3,5),(50729,NULL,NULL,'waiting',0,2,1,3,7),(50730,NULL,NULL,'waiting',0,2,1,3,9),(50731,NULL,NULL,'waiting',1,2,1,3,11),(50732,NULL,NULL,'waiting',0,2,1,3,13),(50733,NULL,NULL,'waiting',0,2,1,3,15),(50734,NULL,NULL,'waiting',0,2,1,4,1),(50735,NULL,NULL,'waiting',0,2,1,4,3),(50736,NULL,NULL,'waiting',0,2,1,4,5),(50737,NULL,NULL,'waiting',0,2,1,4,7),(50738,NULL,NULL,'waiting',0,2,1,4,9),(50739,NULL,NULL,'waiting',0,2,1,4,11),(50740,NULL,NULL,'waiting',0,2,1,4,13),(50741,NULL,NULL,'waiting',0,2,1,4,15),(50742,NULL,NULL,'waiting',0,2,1,5,1),(50743,NULL,NULL,'waiting',0,2,1,5,3),(50744,NULL,NULL,'waiting',0,2,1,5,5),(50745,NULL,NULL,'waiting',0,2,1,5,7),(50746,NULL,NULL,'waiting',0,2,1,5,9),(50747,NULL,NULL,'waiting',0,2,1,5,11),(50748,NULL,NULL,'waiting',0,2,1,5,13),(50749,NULL,NULL,'waiting',0,2,1,5,15),(50750,NULL,NULL,'waiting',1,3,1,1,1),(50751,NULL,NULL,'waiting',2,3,1,1,3),(50752,NULL,NULL,'waiting',0,3,1,1,5),(50753,NULL,NULL,'waiting',0,3,1,1,7),(50754,NULL,NULL,'waiting',0,3,1,1,9),(50755,NULL,NULL,'waiting',0,3,1,1,11),(50756,NULL,NULL,'waiting',0,3,1,1,13),(50757,NULL,NULL,'waiting',0,3,1,1,15),(50758,NULL,NULL,'waiting',0,3,1,2,1),(50759,NULL,NULL,'waiting',2,3,1,2,3),(50760,NULL,NULL,'waiting',0,3,1,2,5),(50761,NULL,NULL,'waiting',0,3,1,2,7),(50762,NULL,NULL,'waiting',0,3,1,2,9),(50763,NULL,NULL,'waiting',0,3,1,2,11),(50764,NULL,NULL,'waiting',0,3,1,2,13),(50765,NULL,NULL,'waiting',0,3,1,2,15),(50766,NULL,NULL,'waiting',0,3,1,3,1),(50767,NULL,NULL,'waiting',0,3,1,3,3),(50768,NULL,NULL,'waiting',0,3,1,3,5),(50769,NULL,NULL,'waiting',0,3,1,3,7),(50770,NULL,NULL,'waiting',0,3,1,3,9),(50771,NULL,NULL,'waiting',1,3,1,3,11),(50772,NULL,NULL,'waiting',0,3,1,3,13),(50773,NULL,NULL,'waiting',0,3,1,3,15),(50774,NULL,NULL,'waiting',0,3,1,4,1),(50775,NULL,NULL,'waiting',0,3,1,4,3),(50776,NULL,NULL,'waiting',0,3,1,4,5),(50777,NULL,NULL,'waiting',0,3,1,4,7),(50778,NULL,NULL,'waiting',0,3,1,4,9),(50779,NULL,NULL,'waiting',0,3,1,4,11),(50780,NULL,NULL,'waiting',0,3,1,4,13),(50781,NULL,NULL,'waiting',0,3,1,4,15),(50782,NULL,NULL,'waiting',0,3,1,5,1),(50783,NULL,NULL,'waiting',0,3,1,5,3),(50784,NULL,NULL,'waiting',0,3,1,5,5),(50785,NULL,NULL,'waiting',0,3,1,5,7),(50786,NULL,NULL,'waiting',0,3,1,5,9),(50787,NULL,NULL,'waiting',0,3,1,5,11),(50788,NULL,NULL,'waiting',0,3,1,5,13),(50789,NULL,NULL,'waiting',0,3,1,5,15);
+INSERT INTO `AttendanceRecord` VALUES (50790,NULL,NULL,'normal',1,1,14,1,1),(50791,NULL,NULL,'normal',2,1,14,1,3),(50792,NULL,NULL,'normal',0,1,14,1,5),(50793,NULL,NULL,'waiting',0,1,14,1,7),(50794,NULL,NULL,'waiting',0,1,14,1,9),(50795,NULL,NULL,'waiting',0,1,14,1,11),(50796,NULL,NULL,'waiting',0,1,14,1,13),(50797,NULL,NULL,'waiting',0,1,14,1,15),(50798,NULL,NULL,'waiting',0,1,14,2,1),(50799,NULL,NULL,'waiting',2,1,14,2,3),(50800,NULL,NULL,'waiting',0,1,14,2,5),(50801,NULL,NULL,'waiting',0,1,14,2,7),(50802,NULL,NULL,'waiting',0,1,14,2,9),(50803,NULL,NULL,'waiting',0,1,14,2,11),(50804,NULL,NULL,'waiting',0,1,14,2,13),(50805,NULL,NULL,'waiting',0,1,14,2,15),(50806,NULL,NULL,'waiting',0,1,14,3,1),(50807,NULL,NULL,'waiting',0,1,14,3,3),(50808,NULL,NULL,'waiting',0,1,14,3,5),(50809,NULL,NULL,'waiting',0,1,14,3,7),(50810,NULL,NULL,'waiting',0,1,14,3,9),(50811,NULL,NULL,'waiting',1,1,14,3,11),(50812,NULL,NULL,'waiting',0,1,14,3,13),(50813,NULL,NULL,'waiting',0,1,14,3,15),(50814,NULL,NULL,'waiting',0,1,14,4,1),(50815,NULL,NULL,'waiting',0,1,14,4,3),(50816,NULL,NULL,'waiting',0,1,14,4,5),(50817,NULL,NULL,'waiting',0,1,14,4,7),(50818,NULL,NULL,'waiting',0,1,14,4,9),(50819,NULL,NULL,'waiting',0,1,14,4,11),(50820,NULL,NULL,'normal',0,1,14,4,13),(50821,NULL,NULL,'absent',0,1,14,4,15),(50822,NULL,NULL,'waiting',0,1,14,5,1),(50823,NULL,NULL,'waiting',0,1,14,5,3),(50824,NULL,NULL,'waiting',0,1,14,5,5),(50825,NULL,NULL,'waiting',0,1,14,5,7),(50826,NULL,NULL,'waiting',0,1,14,5,9),(50827,NULL,NULL,'waiting',0,1,14,5,11),(50828,NULL,NULL,'waiting',0,1,14,5,13),(50829,NULL,NULL,'waiting',0,1,14,5,15),(50830,NULL,NULL,'waiting',1,1,15,1,1),(50831,NULL,NULL,'waiting',2,1,15,1,3),(50832,NULL,NULL,'waiting',0,1,15,1,5),(50833,NULL,NULL,'waiting',0,1,15,1,7),(50834,NULL,NULL,'waiting',0,1,15,1,9),(50835,NULL,NULL,'waiting',0,1,15,1,11),(50836,NULL,NULL,'waiting',0,1,15,1,13),(50837,NULL,NULL,'waiting',0,1,15,1,15),(50838,NULL,NULL,'waiting',0,1,15,2,1),(50839,NULL,NULL,'waiting',2,1,15,2,3),(50840,NULL,NULL,'waiting',0,1,15,2,5),(50841,NULL,NULL,'waiting',0,1,15,2,7),(50842,NULL,NULL,'waiting',0,1,15,2,9),(50843,NULL,NULL,'waiting',0,1,15,2,11),(50844,NULL,NULL,'waiting',0,1,15,2,13),(50845,NULL,NULL,'waiting',0,1,15,2,15),(50846,NULL,NULL,'waiting',0,1,15,3,1),(50847,NULL,NULL,'waiting',0,1,15,3,3),(50848,NULL,NULL,'waiting',0,1,15,3,5),(50849,NULL,NULL,'waiting',0,1,15,3,7),(50850,NULL,NULL,'waiting',0,1,15,3,9),(50851,NULL,NULL,'waiting',1,1,15,3,11),(50852,NULL,NULL,'waiting',0,1,15,3,13),(50853,NULL,NULL,'waiting',0,1,15,3,15),(50854,NULL,NULL,'waiting',0,1,15,4,1),(50855,NULL,NULL,'waiting',0,1,15,4,3),(50856,NULL,NULL,'waiting',0,1,15,4,5),(50857,NULL,NULL,'waiting',0,1,15,4,7),(50858,NULL,NULL,'waiting',0,1,15,4,9),(50859,NULL,NULL,'waiting',0,1,15,4,11),(50860,NULL,NULL,'waiting',0,1,15,4,13),(50861,NULL,NULL,'waiting',0,1,15,4,15),(50862,NULL,NULL,'waiting',0,1,15,5,1),(50863,NULL,NULL,'waiting',0,1,15,5,3),(50864,NULL,NULL,'waiting',0,1,15,5,5),(50865,NULL,NULL,'waiting',0,1,15,5,7),(50866,NULL,NULL,'waiting',0,1,15,5,9),(50867,NULL,NULL,'waiting',0,1,15,5,11),(50868,NULL,NULL,'waiting',0,1,15,5,13),(50869,NULL,NULL,'waiting',0,1,15,5,15),(50870,NULL,NULL,'waiting',1,2,14,1,1),(50871,NULL,NULL,'waiting',2,2,14,1,3),(50872,NULL,NULL,'waiting',0,2,14,1,5),(50873,NULL,NULL,'waiting',0,2,14,1,7),(50874,NULL,NULL,'waiting',0,2,14,1,9),(50875,NULL,NULL,'waiting',0,2,14,1,11),(50876,NULL,NULL,'waiting',0,2,14,1,13),(50877,NULL,NULL,'waiting',0,2,14,1,15),(50878,NULL,NULL,'waiting',0,2,14,2,1),(50879,NULL,NULL,'waiting',2,2,14,2,3),(50880,NULL,NULL,'waiting',0,2,14,2,5),(50881,NULL,NULL,'waiting',0,2,14,2,7),(50882,NULL,NULL,'waiting',0,2,14,2,9),(50883,NULL,NULL,'waiting',0,2,14,2,11),(50884,NULL,NULL,'waiting',0,2,14,2,13),(50885,NULL,NULL,'waiting',0,2,14,2,15),(50886,NULL,NULL,'waiting',0,2,14,3,1),(50887,NULL,NULL,'waiting',0,2,14,3,3),(50888,NULL,NULL,'waiting',0,2,14,3,5),(50889,NULL,NULL,'waiting',0,2,14,3,7),(50890,NULL,NULL,'waiting',0,2,14,3,9),(50891,NULL,NULL,'waiting',1,2,14,3,11),(50892,NULL,NULL,'waiting',0,2,14,3,13),(50893,NULL,NULL,'waiting',0,2,14,3,15),(50894,NULL,NULL,'waiting',0,2,14,4,1),(50895,NULL,NULL,'waiting',0,2,14,4,3),(50896,NULL,NULL,'waiting',0,2,14,4,5),(50897,NULL,NULL,'waiting',0,2,14,4,7),(50898,NULL,NULL,'waiting',0,2,14,4,9),(50899,NULL,NULL,'waiting',0,2,14,4,11),(50900,NULL,NULL,'waiting',0,2,14,4,13),(50901,NULL,NULL,'leave',0,2,14,4,15),(50902,NULL,NULL,'waiting',0,2,14,5,1),(50903,NULL,NULL,'waiting',0,2,14,5,3),(50904,NULL,NULL,'waiting',0,2,14,5,5),(50905,NULL,NULL,'waiting',0,2,14,5,7),(50906,NULL,NULL,'waiting',0,2,14,5,9),(50907,NULL,NULL,'waiting',0,2,14,5,11),(50908,NULL,NULL,'waiting',0,2,14,5,13),(50909,NULL,NULL,'waiting',0,2,14,5,15),(50910,NULL,NULL,'waiting',1,2,15,1,1),(50911,NULL,NULL,'waiting',2,2,15,1,3),(50912,NULL,NULL,'waiting',0,2,15,1,5),(50913,NULL,NULL,'waiting',0,2,15,1,7),(50914,NULL,NULL,'waiting',0,2,15,1,9),(50915,NULL,NULL,'waiting',0,2,15,1,11),(50916,NULL,NULL,'waiting',0,2,15,1,13),(50917,NULL,NULL,'waiting',0,2,15,1,15),(50918,NULL,NULL,'waiting',0,2,15,2,1),(50919,NULL,NULL,'waiting',2,2,15,2,3),(50920,NULL,NULL,'waiting',0,2,15,2,5),(50921,NULL,NULL,'waiting',0,2,15,2,7),(50922,NULL,NULL,'waiting',0,2,15,2,9),(50923,NULL,NULL,'waiting',0,2,15,2,11),(50924,NULL,NULL,'waiting',0,2,15,2,13),(50925,NULL,NULL,'waiting',0,2,15,2,15),(50926,NULL,NULL,'waiting',0,2,15,3,1),(50927,NULL,NULL,'waiting',0,2,15,3,3),(50928,NULL,NULL,'waiting',0,2,15,3,5),(50929,NULL,NULL,'waiting',0,2,15,3,7),(50930,NULL,NULL,'waiting',0,2,15,3,9),(50931,NULL,NULL,'waiting',1,2,15,3,11),(50932,NULL,NULL,'waiting',0,2,15,3,13),(50933,NULL,NULL,'waiting',0,2,15,3,15),(50934,NULL,NULL,'waiting',0,2,15,4,1),(50935,NULL,NULL,'waiting',0,2,15,4,3),(50936,NULL,NULL,'waiting',0,2,15,4,5),(50937,NULL,NULL,'waiting',0,2,15,4,7),(50938,NULL,NULL,'waiting',0,2,15,4,9),(50939,NULL,NULL,'waiting',0,2,15,4,11),(50940,NULL,NULL,'waiting',0,2,15,4,13),(50941,NULL,NULL,'waiting',0,2,15,4,15),(50942,NULL,NULL,'waiting',0,2,15,5,1),(50943,NULL,NULL,'waiting',0,2,15,5,3),(50944,NULL,NULL,'waiting',0,2,15,5,5),(50945,NULL,NULL,'waiting',0,2,15,5,7),(50946,NULL,NULL,'waiting',0,2,15,5,9),(50947,NULL,NULL,'waiting',0,2,15,5,11),(50948,NULL,NULL,'waiting',0,2,15,5,13),(50949,NULL,NULL,'waiting',0,2,15,5,15),(50950,NULL,NULL,'waiting',1,3,14,1,1),(50951,NULL,NULL,'waiting',2,3,14,1,3),(50952,NULL,NULL,'waiting',0,3,14,1,5),(50953,NULL,NULL,'waiting',0,3,14,1,7),(50954,NULL,NULL,'waiting',0,3,14,1,9),(50955,NULL,NULL,'waiting',0,3,14,1,11),(50956,NULL,NULL,'waiting',0,3,14,1,13),(50957,NULL,NULL,'waiting',0,3,14,1,15),(50958,NULL,NULL,'waiting',0,3,14,2,1),(50959,NULL,NULL,'waiting',2,3,14,2,3),(50960,NULL,NULL,'waiting',0,3,14,2,5),(50961,NULL,NULL,'waiting',0,3,14,2,7),(50962,NULL,NULL,'waiting',0,3,14,2,9),(50963,NULL,NULL,'waiting',0,3,14,2,11),(50964,NULL,NULL,'waiting',0,3,14,2,13),(50965,NULL,NULL,'waiting',0,3,14,2,15),(50966,NULL,NULL,'waiting',0,3,14,3,1),(50967,NULL,NULL,'waiting',0,3,14,3,3),(50968,NULL,NULL,'waiting',0,3,14,3,5),(50969,NULL,NULL,'waiting',0,3,14,3,7),(50970,NULL,NULL,'waiting',0,3,14,3,9),(50971,NULL,NULL,'waiting',1,3,14,3,11),(50972,NULL,NULL,'waiting',0,3,14,3,13),(50973,NULL,NULL,'waiting',0,3,14,3,15),(50974,NULL,NULL,'waiting',0,3,14,4,1),(50975,NULL,NULL,'waiting',0,3,14,4,3),(50976,NULL,NULL,'waiting',0,3,14,4,5),(50977,NULL,NULL,'waiting',0,3,14,4,7),(50978,NULL,NULL,'waiting',0,3,14,4,9),(50979,NULL,NULL,'waiting',0,3,14,4,11),(50980,NULL,NULL,'waiting',0,3,14,4,13),(50981,NULL,NULL,'normal',0,3,14,4,15),(50982,NULL,NULL,'waiting',0,3,14,5,1),(50983,NULL,NULL,'waiting',0,3,14,5,3),(50984,NULL,NULL,'waiting',0,3,14,5,5),(50985,NULL,NULL,'waiting',0,3,14,5,7),(50986,NULL,NULL,'waiting',0,3,14,5,9),(50987,NULL,NULL,'waiting',0,3,14,5,11),(50988,NULL,NULL,'waiting',0,3,14,5,13),(50989,NULL,NULL,'waiting',0,3,14,5,15),(50990,NULL,NULL,'waiting',1,3,15,1,1),(50991,NULL,NULL,'waiting',2,3,15,1,3),(50992,NULL,NULL,'waiting',0,3,15,1,5),(50993,NULL,NULL,'waiting',0,3,15,1,7),(50994,NULL,NULL,'waiting',0,3,15,1,9),(50995,NULL,NULL,'waiting',0,3,15,1,11),(50996,NULL,NULL,'waiting',0,3,15,1,13),(50997,NULL,NULL,'waiting',0,3,15,1,15),(50998,NULL,NULL,'waiting',0,3,15,2,1),(50999,NULL,NULL,'waiting',2,3,15,2,3),(51000,NULL,NULL,'waiting',0,3,15,2,5),(51001,NULL,NULL,'waiting',0,3,15,2,7),(51002,NULL,NULL,'waiting',0,3,15,2,9),(51003,NULL,NULL,'waiting',0,3,15,2,11),(51004,NULL,NULL,'waiting',0,3,15,2,13),(51005,NULL,NULL,'waiting',0,3,15,2,15),(51006,NULL,NULL,'waiting',0,3,15,3,1),(51007,NULL,NULL,'waiting',0,3,15,3,3),(51008,NULL,NULL,'waiting',0,3,15,3,5),(51009,NULL,NULL,'waiting',0,3,15,3,7),(51010,NULL,NULL,'waiting',0,3,15,3,9),(51011,NULL,NULL,'waiting',1,3,15,3,11),(51012,NULL,NULL,'waiting',0,3,15,3,13),(51013,NULL,NULL,'waiting',0,3,15,3,15),(51014,NULL,NULL,'waiting',0,3,15,4,1),(51015,NULL,NULL,'waiting',0,3,15,4,3),(51016,NULL,NULL,'waiting',0,3,15,4,5),(51017,NULL,NULL,'waiting',0,3,15,4,7),(51018,NULL,NULL,'waiting',0,3,15,4,9),(51019,NULL,NULL,'waiting',0,3,15,4,11),(51020,NULL,NULL,'waiting',0,3,15,4,13),(51021,NULL,NULL,'waiting',0,3,15,4,15),(51022,NULL,NULL,'waiting',0,3,15,5,1),(51023,NULL,NULL,'waiting',0,3,15,5,3),(51024,NULL,NULL,'waiting',0,3,15,5,5),(51025,NULL,NULL,'waiting',0,3,15,5,7),(51026,NULL,NULL,'waiting',0,3,15,5,9),(51027,NULL,NULL,'waiting',0,3,15,5,11),(51028,NULL,NULL,'waiting',0,3,15,5,13),(51029,NULL,NULL,'waiting',0,3,15,5,15);
 /*!40000 ALTER TABLE `AttendanceRecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `CourseTime` (
   `dayTime` enum('mRest0_1','morning1','mRest1_2','morning2','mRest2_3','morning3','mRest3_4','morning4','aRest0_1','afternoon1','aRest1_2','afternoon2','aRest2_3','afternoon3','aRest3_4','afternoon4','other') DEFAULT NULL,
   `courseId` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50581 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50586 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `CourseTime` (
 
 LOCK TABLES `CourseTime` WRITE;
 /*!40000 ALTER TABLE `CourseTime` DISABLE KEYS */;
-INSERT INTO `CourseTime` VALUES (50576,1,'morning1',1),(50577,3,'afternoon2',1),(50578,1,'morning2',2),(50579,2,'morning2',2),(50580,0,'morning1',0);
+INSERT INTO `CourseTime` VALUES (50581,1,'morning1',1),(50582,3,'afternoon2',1),(50583,1,'morning2',2),(50584,2,'morning2',2),(50585,0,'morning1',0);
 /*!40000 ALTER TABLE `CourseTime` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `FaceInformation` (
   `PhotoPath` varchar(255) DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `FaceInformation` (
 
 LOCK TABLES `FaceInformation` WRITE;
 /*!40000 ALTER TABLE `FaceInformation` DISABLE KEYS */;
-INSERT INTO `FaceInformation` VALUES ('/opt/myProject_another/photoes/peopleList/lly1.jpeg',46),('/opt/myProject_another/photoes/peopleList/shl2.jpeg',47),('/opt/myProject_another/photoes/peopleList/lhy1.jpeg',48);
+INSERT INTO `FaceInformation` VALUES ('/opt/myProject_another/photoes/peopleList/lly1.jpeg',49),('/opt/myProject_another/photoes/peopleList/shl2.jpeg',50),('/opt/myProject_another/photoes/peopleList/lhy1.jpeg',51);
 /*!40000 ALTER TABLE `FaceInformation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +176,7 @@ CREATE TABLE `LeaveRecord` (
 
 LOCK TABLES `LeaveRecord` WRITE;
 /*!40000 ALTER TABLE `LeaveRecord` DISABLE KEYS */;
-INSERT INTO `LeaveRecord` VALUES (1,1,1,NULL,NULL,23,'rex','pass',1,2,1),(2,1,32767,NULL,NULL,23,'t','waiting',1,3,1),(3,1,1,NULL,NULL,23,'t','pass',1,1,1);
+INSERT INTO `LeaveRecord` VALUES (1,1,1,NULL,NULL,24,'rex','pass',14,2,1),(2,2,1,NULL,NULL,24,'t','pass',14,4,1);
 /*!40000 ALTER TABLE `LeaveRecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `LeaveRecordFactory` (
   `name` varchar(255) DEFAULT NULL,
   `recordCount` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `LeaveRecordFactory` (
 
 LOCK TABLES `LeaveRecordFactory` WRITE;
 /*!40000 ALTER TABLE `LeaveRecordFactory` DISABLE KEYS */;
-INSERT INTO `LeaveRecordFactory` VALUES (23,'testClass',3);
+INSERT INTO `LeaveRecordFactory` VALUES (24,'testClass',2);
 /*!40000 ALTER TABLE `LeaveRecordFactory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `MyClass` (
 
 LOCK TABLES `MyClass` WRITE;
 /*!40000 ALTER TABLE `MyClass` DISABLE KEYS */;
-INSERT INTO `MyClass` VALUES (2201,NULL,NULL,NULL,'testClass',23);
+INSERT INTO `MyClass` VALUES (2201,NULL,NULL,NULL,'testClass',24);
 /*!40000 ALTER TABLE `MyClass` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +310,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES (1,2201,NULL,'1','normal','lly','123',1,46),(2,2201,NULL,'2','normal','shl','123',1,47),(3,2201,NULL,'3','normal','lhy','123',1,48);
+INSERT INTO `Student` VALUES (1,2201,NULL,'1','normal','lly','123',1,49),(2,2201,NULL,'2','normal','shl','123',1,50),(3,2201,NULL,'3','normal','lhy','123',1,51);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,4 +352,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-04 11:42:21
+-- Dump completed on 2024-04-04 17:24:56
