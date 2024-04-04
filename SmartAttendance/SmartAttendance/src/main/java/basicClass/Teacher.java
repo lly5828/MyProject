@@ -87,7 +87,12 @@ public class Teacher extends Person{
         Teacher teacher=new Teacher("null","null",true,"32767");
         teacher.setTeachClass(myClass);
         teacher.setId(32767);
-//        teacher.setTeachCourse(Course.newNullCourse(myClass));
+        return teacher;
+    }
+    public static Teacher newNullTeacher(int myClass){
+        Teacher teacher=new Teacher("null","null",true,"32767");
+        teacher.setTeachClassId(myClass);
+        teacher.setId(32767);
         return teacher;
     }
 

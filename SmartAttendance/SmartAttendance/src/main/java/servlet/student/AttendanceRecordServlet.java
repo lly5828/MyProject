@@ -26,7 +26,8 @@ public class AttendanceRecordServlet extends HttpServlet {
         //
         ArrayList<AttendanceInfo> attendanceInfos = null;
         try {
-            attendanceInfos = InterfaceToWeb.attendanceSituation(student);
+            attendanceInfos = InterfaceToWeb.attendanceSituation(stuID);
+//            attendanceInfos = InterfaceToWeb.attendanceSituation(student);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

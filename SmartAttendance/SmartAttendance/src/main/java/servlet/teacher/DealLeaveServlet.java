@@ -1,5 +1,6 @@
 package servlet.teacher;
 
+import Database.DatabaseManager;
 import MyInterface.InterfaceToWeb;
 import MyInterface.info.LeaveInfo;
 import basicClass.LeaveInfo.LeaveRecord;
@@ -24,11 +25,11 @@ public class DealLeaveServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String teaID = req.getParameter("teacherID");
-        Teacher teacher = InterfaceToWeb.getTeacher(teaID);
+//        Teacher teacher = InterfaceToWeb.getTeacher(teaID);
         JsonData<String> jsonDealLeave;
         LeaveRecordFactory leaveRecordFactory = null;
         try {
-            leaveRecordFactory = InterfaceToWeb.getLeaveRecord(teacher);
+            leaveRecordFactory = InterfaceToWeb.getLeaveRecord(Integer.parseInt(teaID));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -39,10 +40,10 @@ public class DealLeaveServlet extends HttpServlet {
                 int leaveRecordNum = Integer.parseInt(req.getParameter("leaveRecordNum"));
                 String result = req.getParameter("result");
                 if (result.equals("true")) {
-                    InterfaceToWeb.dealLeaveRecord(teacher, leaveRecordNum, true);
+                    InterfaceToWeb.dealLeaveRecord(teaID, leaveRecordNum, true);
                     jsonDealLeave=new JsonData<>(0,"pass the apply");
                 } else if (result.equals("false")) {
-                    InterfaceToWeb.dealLeaveRecord(teacher, leaveRecordNum, false);
+                    InterfaceToWeb.dealLeaveRecord(teaID, leaveRecordNum, false);
                     jsonDealLeave=new JsonData<>(0,"reject the apply");
                 } else {
                     jsonDealLeave=new JsonData<>(1,"error exception in result");
@@ -58,21 +59,23 @@ public class DealLeaveServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String teaID=req.getParameter("teacherID");
-        Teacher teacher = InterfaceToWeb.getTeacher(teaID);
-        MyClass myClass= null;
-        try {
-            myClass = teacher.getTeachClassBySQL();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        LeaveRecordFactory leaveRecordFactory=InterfaceToWeb.getLeaveRecordFactory(myClass);
-        ArrayList<LeaveInfo> leaveInfos=InterfaceToWeb.factoryToLeaveInfo(leaveRecordFactory);
-        JsonData<ArrayList<LeaveInfo>> jsonLeaveInfo;
-        if(leaveInfos.size()<=0){
-            jsonLeaveInfo=new JsonData<>(1,"no leaveInfo",leaveInfos);
-        }else {
-            jsonLeaveInfo=new JsonData<>(0, "leaveInfos", leaveInfos);
-        }
-        jsonLeaveInfo.postData(resp);
+//        Teacher teacher = InterfaceToWeb.getTeacher(teaID);
+
+//        try {
+            DatabaseManager databaseManager=new DatabaseManager();
+            int myClassId= databaseManager.getTeacherClassIdByTeaId(Integer.parseInt(teaID));
+            LeaveRecordFactory leaveRecordFactory=InterfaceToWeb.getLeaveRecordFactory(myClassId);
+            ArrayList<LeaveInfo> leaveInfos=InterfaceToWeb.factoryToLeaveInfo(leaveRecordFactory);
+            JsonData<ArrayList<LeaveInfo>> jsonLeaveInfo;
+            if(leaveInfos.size()<=0){
+                jsonLeaveInfo=new JsonData<>(1,"no leaveInfo",leaveInfos);
+            }else {
+                jsonLeaveInfo=new JsonData<>(0, "leaveInfos", leaveInfos);
+            }
+            jsonLeaveInfo.postData(resp);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+
     }
 }

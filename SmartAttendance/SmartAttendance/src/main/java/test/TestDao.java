@@ -7,11 +7,12 @@ import basicClass.LeaveInfo.LeaveRecord;
 import basicClass.LeaveInfo.LeaveRecordFactory;
 import basicClass.LeaveInfo.LeaveResult;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TestDao {
     public static void main(String[] args) throws SQLException {
-//        FaceController faceController=new FaceController();
         Student lly = new Student("lly", "123", true, "1");
         Student shl = new Student("shl", "123", true, "2");
         Student lhy = new Student("lhy", "123", true, "3");
@@ -51,11 +52,8 @@ public class TestDao {
         myClass.addStudent(shl);
         myClass.addStudent(lhy);
 
-
-//        addWholeClass(myClass);
-
-
-
+        clear();
+        addWholeClass(myClass);
 
 
         DatabaseManager databaseManager=new DatabaseManager();
@@ -66,7 +64,7 @@ public class TestDao {
         Teacher teaMGET=databaseManager.findTeacherById(teaM.getId());
 
         LeaveRecordFactoryDao leaveRecordFactoryDao=new LeaveRecordFactoryDao();
-        leaveRecordFactoryDao.addLeaveRecord(my.getLeaveRecordFactory(),new SchoolTime(1,2,DayTime.morning1),"rex",llyGET,Teacher.newNullTeacher(my));
+        leaveRecordFactoryDao.addLeaveRecord(my.getLeaveRecordFactory(),new SchoolTime(1,2,DayTime.morning1),"rex",llyGET.getId(),32767);
 
         AttendanceRecordsDAO attendanceRecordsDAO=new AttendanceRecordsDAO();
         attendanceRecordsDAO.changeStatus(llyGET.getAttendanceRecordByTime(new SchoolTime(1,1,DayTime.morning2)),Status.normal);
@@ -96,4 +94,39 @@ public class TestDao {
 
 
     }
+
+    public static void clear() throws SQLException {
+        Connection connection = DatabaseConnectionManager.getConnection();
+        String query = "delete from MyClass ";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from Student";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from Teacher";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from Course";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from FaceInformation";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from LeaveRecordFactory";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from LeaveRecord";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from SchoolTimeTable";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from CourseTime";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+        query="delete from AttendanceRecord";
+        statement= connection.prepareStatement(query);
+        statement.executeUpdate();
+    }
+
 }

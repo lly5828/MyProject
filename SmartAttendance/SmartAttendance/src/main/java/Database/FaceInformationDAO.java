@@ -68,7 +68,7 @@ public class FaceInformationDAO extends BaseDAO {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    int foundId = resultSet.getInt("Id");
+                    int foundId = resultSet.getInt("id");
                     String photoPath = resultSet.getString("PhotoPath");
                     return new FaceInformation(foundId, photoPath);
                 }

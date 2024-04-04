@@ -46,8 +46,8 @@ public class FaceInformation {
     public FaceInformation(int foundId, String photoPath) {
         this.id=foundId;
         this.PhotoPath=photoPath;
-        FaceController faceController=new FaceController();
-        this.faceFeature=faceController.addFace(photoPath).getFaceFeature();
+//        FaceController faceController=new FaceController();
+//        this.faceFeature=faceController.addFace(photoPath).getFaceFeature();
     }
 
     public void setFaceFeature(FaceFeature faceFeature) {

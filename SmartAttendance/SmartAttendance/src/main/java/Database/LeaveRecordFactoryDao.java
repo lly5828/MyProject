@@ -83,7 +83,7 @@ public class LeaveRecordFactoryDao extends BaseDAO {
         return leaveRecordFactory;
     }
 
-    public void addLeaveRecord(LeaveRecordFactory leaveRecordFactory, SchoolTime schoolTime, String reason, Student student, Teacher teacher) throws SQLException {
+    public void addLeaveRecord(LeaveRecordFactory leaveRecordFactory, SchoolTime schoolTime, String reason, int student, int teacher) throws SQLException {
         LeaveRecord leaveRecord=leaveRecordFactory.addLeaveRecordReturn(schoolTime,reason,student,teacher);
         update(leaveRecordFactory);
         leaveRecord.setFactoryId(leaveRecordFactory.getId());

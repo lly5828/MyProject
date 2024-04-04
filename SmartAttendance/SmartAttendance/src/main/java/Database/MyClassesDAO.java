@@ -84,4 +84,33 @@ public class MyClassesDAO extends BaseDAO {
         }
         return null;
     }
+
+    public int getFactoryIdByClassId(int myClassId) {
+        try {
+            String query = "SELECT * FROM MyClass WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, myClassId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("leaveRecordFactoryId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public String getClassNameByClassId(int myClassId){
+        try {
+            String query = "SELECT * FROM MyClass WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, myClassId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "null";
+    }
 }

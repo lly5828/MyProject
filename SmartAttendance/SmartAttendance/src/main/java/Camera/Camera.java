@@ -1,6 +1,8 @@
 package Camera;
 
 
+import Database.AttendanceRecordsDAO;
+import Database.BaseDAO;
 import basicClass.*;
 import basicClass.face.FaceController;
 import com.arcsoft.face.toolkit.ImageFactory;
@@ -10,34 +12,52 @@ import com.github.sarxos.webcam.WebcamUtils;
 import com.github.sarxos.webcam.util.ImageUtils;
 
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
 
 public class Camera {
     FaceController faceController;
     Webcam webcam;
+
     public Camera() {
         this.faceController = new FaceController();
-        webcam=Webcam.getDefault();
+        webcam = Webcam.getDefault();
     }
-    public  void takePhotoAndAnalyse(MyClass myClass,SchoolTime schoolTime){
-                String fileName=getPhoto();
-                analyse(myClass,schoolTime,myClass.getNextCourseByTime(schoolTime),fileName);
+
+    public void takePhotoAndAnalyse(MyClass myClass, SchoolTime schoolTime) {
+        String fileName = getPhoto();
+        analyse(myClass, schoolTime, myClass.getNextCourseByTime(schoolTime), fileName);
     }
-    private String getPhoto(){
-        String fileName = "/opt/myProject/photoFromCamera/" + System.currentTimeMillis()+".png";
+
+    private String getPhoto() {
+        String fileName = "/opt/myProject/photoFromCamera/" + System.currentTimeMillis() + ".png";
         WebcamUtils.capture(webcam, fileName, ImageUtils.FORMAT_PNG);
 
         return fileName;
     }
 
-    private void analyse(MyClass myClass, SchoolTime schoolTime, Course course,String fileName){
-        Student student=myClass.ifThisClassStudent(faceController.addFace(fileName));
-        if(student!=null){
-            for(AttendanceRecord attendanceRecord:student.getAttendanceRecords()){
-                if(attendanceRecord.getTime().equals(schoolTime))return;
-            }
+    private void analyse(MyClass myClass, SchoolTime schoolTime, Course course, String fileName) {
+        Student student = myClass.ifThisClassStudent(faceController.addFace(fileName));
+        if (student != null) {
+            try {
+                AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
+                for (AttendanceRecord attendanceRecord : student.getAttendanceRecords()) {
+                    if (attendanceRecord.getTime().equals(schoolTime)) {
 
-            student.addAttendanceRecord(schoolTime,course.getName(),course.getId(),Status.normal,student.getStudentNumber());
+                        attendanceRecordsDAO.changeStatus(attendanceRecord, Status.normal);
+                        BaseDAO.closeConnection(attendanceRecordsDAO.connection);
+
+                        return;
+                    }
+                }
+
+                AttendanceRecord attendanceRecord=new AttendanceRecord(schoolTime, course.getName(), course.getId(), Status.normal, Integer.parseInt(student.getStudentNumber()));
+                attendanceRecordsDAO.insert(attendanceRecord);
+                student.addAttendanceRecord(attendanceRecord);
+                BaseDAO.closeConnection(attendanceRecordsDAO.connection);
 //            System.out.println(student.getName()+schoolTime+courseName+Status.normal);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

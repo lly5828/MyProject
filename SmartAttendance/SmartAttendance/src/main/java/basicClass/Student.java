@@ -90,6 +90,10 @@ public class Student extends Person{
         this.addAttendanceRecord(schoolTime,course.getName(),course.getId(),status,this.studentNumber);
     }
 
+    public void addAttendanceRecord(AttendanceRecord attendanceRecord){
+        this.attendanceRecords.add(attendanceRecord);
+    }
+
     public ArrayList<AttendanceRecord> getAttendanceRecords() {
         return attendanceRecords;
     }

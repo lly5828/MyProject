@@ -1,6 +1,7 @@
 package Database;
 
 import basicClass.AttendanceRecord;
+import basicClass.DayTime;
 import basicClass.SchoolTime;
 import basicClass.Status;
 
@@ -17,19 +18,43 @@ public class AttendanceRecordsDAO extends BaseDAO {
         super();
     }
 
+//    @Override
+//    public void insert(Object obj) throws SQLException {
+//        if (obj instanceof AttendanceRecord) {
+//            AttendanceRecord attendanceRecord = (AttendanceRecord) obj;
+//            String query = "INSERT INTO AttendanceRecord (courseId, studentId, timeId, status) VALUES (?, ?, ?, ?)";
+//            try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+//                statement.setInt(1, attendanceRecord.getCourseId());
+//                statement.setInt(2, attendanceRecord.getStudentId());
+//                TimeDao timeDao = new TimeDao();
+//                timeDao.insertSchoolTime(attendanceRecord.getTime());
+//                BaseDAO.closeConnection(timeDao.connection);
+//                statement.setInt(3, attendanceRecord.getTime().getId());
+//                statement.setString(4, attendanceRecord.getStatus().toString());
+//                statement.executeUpdate();
+//                ResultSet rs = statement.getGeneratedKeys();
+//                if (rs.next()) {
+//                    attendanceRecord.setId(rs.getInt(1));
+//                }
+//            }
+//        }
+//    }
     @Override
     public void insert(Object obj) throws SQLException {
         if (obj instanceof AttendanceRecord) {
             AttendanceRecord attendanceRecord = (AttendanceRecord) obj;
-            String query = "INSERT INTO AttendanceRecord (courseId, studentId, timeId, status) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO AttendanceRecord (courseId, studentId,status,weekNo,dayNo,timeNo) VALUES (?, ?, ?, ?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setInt(1, attendanceRecord.getCourseId());
                 statement.setInt(2, attendanceRecord.getStudentId());
-                TimeDao timeDao = new TimeDao();
-                timeDao.insertSchoolTime(attendanceRecord.getTime());
-                BaseDAO.closeConnection(timeDao.connection);
-                statement.setInt(3, attendanceRecord.getTime().getId());
-                statement.setString(4, attendanceRecord.getStatus().toString());
+                statement.setString(3, attendanceRecord.getStatus().toString());
+
+                statement.setInt(4, attendanceRecord.getTime().getWeek());
+                statement.setInt(5, attendanceRecord.getTime().getDayInWeek());
+                statement.setInt(6, attendanceRecord.getTime().getDayTime().dayTimeToNumber());
+
+//                statement.setString(7, attendanceRecord.getCourseName().toString());
+
                 statement.executeUpdate();
                 ResultSet rs = statement.getGeneratedKeys();
                 if (rs.next()) {
@@ -74,9 +99,15 @@ public class AttendanceRecordsDAO extends BaseDAO {
                     attendanceRecord.setId(resultSet.getInt("id"));
                     CourseDAO courseDAO = new CourseDAO();
                     attendanceRecord.setCourseName(courseDAO.findById(resultSet.getInt("courseId")).getName());
-                    DatabaseManager databaseManager = new DatabaseManager();
-                    TimeDao timeDao = new TimeDao();
-                    attendanceRecord.setTime(timeDao.findSchoolTimeById(resultSet.getInt("timeId")));
+//                    DatabaseManager databaseManager = new DatabaseManager();
+
+                    attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
+                            resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+
+
+//                    TimeDao timeDao = new TimeDao();
+//                    attendanceRecord.setTime(timeDao.findSchoolTimeById(resultSet.getInt("timeId")));
+
                     attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
                     return attendanceRecord;
                 }
@@ -98,9 +129,13 @@ public class AttendanceRecordsDAO extends BaseDAO {
                     CourseDAO courseDAO = new CourseDAO();
                     attendanceRecord.setCourseName(courseDAO.findById(attendanceRecord.getCourseId()).getName());
                     BaseDAO.closeConnection(courseDAO.connection);
-                    TimeDao timeDao = new TimeDao();
-                    attendanceRecord.setTime(timeDao.findSchoolTimeById(resultSet.getInt("timeId")));
-                    BaseDAO.closeConnection(timeDao.connection);
+
+//                    attendanceRecord.setCourseName(resultSet.getString("courseName"));
+
+                    attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
+                            resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+
+
                     attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
                     attendanceRecordArrayList.add(attendanceRecord);
                 }
@@ -109,11 +144,11 @@ public class AttendanceRecordsDAO extends BaseDAO {
         return attendanceRecordArrayList;
     }
 
-    public void changeStatus(AttendanceRecord attendanceRecord, Status status) throws SQLException{
+    public void changeStatus(AttendanceRecord attendanceRecord, Status status) throws SQLException {
 
         String query = "UPDATE AttendanceRecord SET status = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1,status.toString());
+            statement.setString(1, status.toString());
             statement.setInt(2, attendanceRecord.getId());
             statement.executeUpdate();
         }

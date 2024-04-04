@@ -20,6 +20,8 @@ public class AttendanceRecord {
         this.courseId=courseId;
     }
 
+
+
     public AttendanceRecord() {
     }
 

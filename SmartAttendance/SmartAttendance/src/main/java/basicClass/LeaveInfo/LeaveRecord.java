@@ -45,6 +45,19 @@ public class LeaveRecord {
         this.leaveResult=LeaveResult.waiting;
         this.factoryId=factoryId;
     }
+    public static LeaveRecord leaveRecordSql(int leaveRecordNum, SchoolTime startTime, SchoolTime endTime, String reason, int student_applyId,int teacher_dealId,int factoryId){
+        LeaveRecord leaveRecord=new LeaveRecord();
+        leaveRecord.leaveRecordNum = leaveRecordNum;
+        leaveRecord.startTime = startTime;
+        leaveRecord.endTime = endTime;
+        leaveRecord.reason = reason;
+        leaveRecord.studentApplyId = student_applyId;
+        leaveRecord.teacherDealId = teacher_dealId;
+        leaveRecord.leaveResult=LeaveResult.waiting;
+        leaveRecord.factoryId=factoryId;
+        return leaveRecord;
+    }
+
 
 
     public Student getStudent_apply() {
@@ -151,6 +164,7 @@ public class LeaveRecord {
 
 
 
+
     public void setTeacherDealId(int teacherDealId) {
         this.teacherDealId = teacherDealId;
     }
@@ -180,5 +194,10 @@ public class LeaveRecord {
 
     public SchoolTime getEndTime() {
         return endTime;
+    }
+
+    public void setTime(SchoolTime schoolTime){
+        setStartTime(new SchoolTime(schoolTime.getWeek(),schoolTime.getDayInWeek(),DayTime.morning1));
+        setStartTime(new SchoolTime(schoolTime.getWeek(),schoolTime.getDayInWeek(),DayTime.afternoon4));
     }
 }

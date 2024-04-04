@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public abstract class BaseDAO {
-    protected Connection connection;
+    public Connection connection;
 
     public BaseDAO(Connection connection) {
         this.connection = connection;
@@ -14,6 +14,7 @@ public abstract class BaseDAO {
 
     public BaseDAO() throws SQLException {
         this(DatabaseConnectionManager.getConnection());
+//        this(DbUtils.getConn());
     }
 
     public abstract void insert(Object obj) throws SQLException;

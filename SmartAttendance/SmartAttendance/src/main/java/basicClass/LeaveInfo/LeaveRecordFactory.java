@@ -1,5 +1,6 @@
 package basicClass.LeaveInfo;
 
+import Database.DatabaseManager;
 import basicClass.DayTime;
 import basicClass.SchoolTime;
 import basicClass.Student;
@@ -35,13 +36,18 @@ public class LeaveRecordFactory {
         addLeaveRecord(new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
                 new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_apply,teacher_deal);
     }
-    public LeaveRecord addLeaveRecordReturn(SchoolTime schoolTime, String reason, Student student_apply, Teacher teacher_deal){
+    public LeaveRecord addLeaveRecordReturn(SchoolTime schoolTime, String reason, int student_applyId, int teacher_dealId){
         this.recordCount++;
         int leaveRecordNum=this.recordCount;
-        LeaveRecord leaveRecord=new LeaveRecord(leaveRecordNum,new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
-                new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_apply,teacher_deal,this.getId());
-        leaveRecords.put(recordCount,leaveRecord);
-        return leaveRecord;
+//        LeaveRecord leaveRecord=new LeaveRecord(leaveRecordNum,new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
+//                new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_apply,teacher_deal,this.getId());
+
+        LeaveRecord leaveRecord1=LeaveRecord.leaveRecordSql(leaveRecordNum,new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.morning1),
+                new SchoolTime(schoolTime.getWeek(), schoolTime.getDayInWeek(), DayTime.afternoon4),reason,student_applyId,teacher_dealId,this.getId());
+
+
+        leaveRecords.put(recordCount,leaveRecord1);
+        return leaveRecord1;
     }
 
 
@@ -57,6 +63,18 @@ public class LeaveRecordFactory {
         ArrayList<LeaveRecord> result=new ArrayList<>();
         for (LeaveRecord leaveRecord:leaveRecords.values()) {
             if(leaveRecord.getStudent_apply().getStudentNumber().equals(student.getStudentNumber())){
+                result.add(leaveRecord);
+            }
+        }
+        if(result.size()==0){
+//            throw new MyException("The Student haven't Asked For Leave");
+        }
+        return result;
+    }
+    public ArrayList<LeaveRecord> getLeaveRecord(String studentNum){
+        ArrayList<LeaveRecord> result=new ArrayList<>();
+        for (LeaveRecord leaveRecord:leaveRecords.values()) {
+            if(leaveRecord.getStudentApplyId()==(Integer.parseInt(studentNum))){
                 result.add(leaveRecord);
             }
         }

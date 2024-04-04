@@ -1,5 +1,7 @@
 package MyInterface.info;
 
+import Database.DatabaseManager;
+import Database.MyClassesDAO;
 import MyInterface.InterfaceToWeb;
 import basicClass.*;
 import basicClass.LeaveInfo.LeaveRecord;
@@ -16,8 +18,18 @@ public class LeaveInfo {
     String reason;
 
     public LeaveInfo(LeaveRecord leaveRecord) throws SQLException {
-        this(leaveRecord.getLeaveRecordNum(),leaveRecord.getStudent_apply().getName(),leaveRecord.getStudent_apply().getStudentNumber(),
-                leaveRecord.getStudent_apply().getMyClassBySQL().getName(), InterfaceToWeb.getDateBySchoolTime(leaveRecord.getStartTime()),leaveRecord.getReason());
+        DatabaseManager databaseManager=new DatabaseManager();
+        MyClassesDAO myClassesDAO=new MyClassesDAO();
+        int studentId=leaveRecord.getStudentApplyId();
+        this.leaveRecordNum=leaveRecord.getLeaveRecordNum();
+        this.student = databaseManager.getStudentNameByStuId(studentId);
+        this.studentID = String.valueOf(studentId);
+        this.myClass = myClassesDAO.getClassNameByClassId(databaseManager.getStudentClassIdByStuId(studentId));
+        this.time =  InterfaceToWeb.getDateBySchoolTime(leaveRecord.getStartTime());
+        this.reason = leaveRecord.getReason();
+
+
+
     }
 
     public LeaveInfo(int leaveRecordNum,String student, String studentID, String myClass, String time, String reason) {

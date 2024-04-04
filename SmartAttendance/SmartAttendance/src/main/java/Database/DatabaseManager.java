@@ -57,11 +57,11 @@ public class DatabaseManager {
             preparedStatement.setString(5, student.getName());
             preparedStatement.setString(6, student.getPhoneNumber());
             preparedStatement.setInt(7, (student.getSex()) ? 1 : 0);
-            FaceInformationDAO faceInformationDAO=new FaceInformationDAO();
+            FaceInformationDAO faceInformationDAO = new FaceInformationDAO();
             faceInformationDAO.insert(student.getFaceInformation());
             preparedStatement.setInt(8, student.getFaceInformation().getId());
-            AttendanceRecordsDAO attendanceRecordsDAO=new AttendanceRecordsDAO();
-            for(AttendanceRecord attendanceRecord: student.getAttendanceRecords()){
+            AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
+            for (AttendanceRecord attendanceRecord : student.getAttendanceRecords()) {
                 attendanceRecordsDAO.insert(attendanceRecord);
             }
 
@@ -73,31 +73,31 @@ public class DatabaseManager {
     }
 
     // 删除学生
-    public void deleteStudent(int studentId) {
-        try {
-            String query = "DELETE FROM Student WHERE id = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, studentId);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void deleteStudent(int studentId) {
+//        try {
+//            String query = "DELETE FROM Student WHERE id = ?";
+//            PreparedStatement preparedStatement = conn.prepareStatement(query);
+//            preparedStatement.setInt(1, studentId);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // 更新学生信息
-    public void updateStudent(Student student) {
-        try {
-            String query = "UPDATE Student SET myClassId = ?, studentNumber = ?, status = ? WHERE id = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, student.getMyClass().getId());
-            preparedStatement.setString(2, student.getStudentNumber());
-            preparedStatement.setString(3, student.getStatus().toString());
-            preparedStatement.setInt(4, student.getId());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void updateStudent(Student student) {
+//        try {
+//            String query = "UPDATE Student SET myClassId = ?, studentNumber = ?, status = ? WHERE id = ?";
+//            PreparedStatement preparedStatement = conn.prepareStatement(query);
+//            preparedStatement.setInt(1, student.getMyClass().getId());
+//            preparedStatement.setString(2, student.getStudentNumber());
+//            preparedStatement.setString(3, student.getStatus().toString());
+//            preparedStatement.setInt(4, student.getId());
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // 根据学生ID查找学生
     public Student findStudentById(int studentId) {
@@ -117,21 +117,17 @@ public class DatabaseManager {
                 student.setSex((resultSet.getInt("sex") == 1) ? true : false);
                 // 设置其他属性...
                 int faceInformationId = resultSet.getInt("faceInformationId");
-                FaceInformation faceInformation1 = findFaceInformationById(faceInformationId);
+                FaceInformationDAO faceInformationDAO=new FaceInformationDAO();
+                FaceInformation faceInformation1 = faceInformationDAO.findById(faceInformationId);
                 student.setFaceInformation(faceInformation1.getPhotoPath());
-
+                BaseDAO.closeConnection(faceInformationDAO.connection);
 
                 AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
                 student.setAttendanceRecords(attendanceRecordsDAO.findByStudentId(studentId));
+                BaseDAO.closeConnection(attendanceRecordsDAO.connection);
                 // 构造 MyClass 对象
                 int myClassId = resultSet.getInt("myClassId");
                 student.setMyClassId(myClassId);
-//                MyClass myClass = findMyClassById(myClassId);
-//                student.setMyClass(myClass);
-
-                // 构造 Status 对象
-//                int statusId = resultSet.getInt("statusId");
-//                Status status = findStatusById(statusId);
                 student.setStatus(Status.normal);
 
                 return student;
@@ -151,13 +147,78 @@ public class DatabaseManager {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Student student =findStudentById(resultSet.getInt("id"));
+                Student student = findStudentById(resultSet.getInt("id"));
                 studentArrayList.add(student);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return studentArrayList;
+    }
+
+    public Student getStudentInfoByStuId(int studentId) {
+        try {
+            String query = "SELECT * FROM Student WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, studentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Student student = new Student();
+                student.setId(resultSet.getInt("id"));
+                student.setName(resultSet.getString("name"));
+                student.setStudentNumber(resultSet.getString("studentNumber"));
+                student.setPhoneNumber(resultSet.getString("phoneNumber"));
+                student.setSex((resultSet.getInt("sex") == 1) ? true : false);
+                // 设置其他属性...
+                int faceInformationId = resultSet.getInt("faceInformationId");
+                FaceInformationDAO faceInformationDAO=new FaceInformationDAO();
+                FaceInformation faceInformation1 = faceInformationDAO.findById(faceInformationId);
+                student.setFaceInformation(faceInformation1.getPhotoPath());
+                BaseDAO.closeConnection(faceInformationDAO.connection);
+
+//                AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
+//                student.setAttendanceRecords(attendanceRecordsDAO.findByStudentId(studentId));
+//                BaseDAO.closeConnection(attendanceRecordsDAO.connection);
+                // 构造 MyClass 对象
+                int myClassId = resultSet.getInt("myClassId");
+                student.setMyClassId(myClassId);
+                student.setStatus(Status.normal);
+
+                return student;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int getStudentClassIdByStuId(int studentId) {
+        try {
+            String query = "SELECT * FROM Student WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, studentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("myClassId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public String getStudentNameByStuId(int studentId){
+        try {
+            String query = "SELECT * FROM Student WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, studentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "null";
     }
 
 
@@ -185,7 +246,6 @@ public class DatabaseManager {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, teacher.getId());
             preparedStatement.setInt(2, teacher.getTeachClass().getId());
-//            preparedStatement.setInt(3, teacher.getTeachCourse().getId());
             preparedStatement.setString(3, teacher.getTeacherNumber());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -231,16 +291,11 @@ public class DatabaseManager {
                 Teacher teacher = new Teacher();
                 teacher.setId(resultSet.getInt("id"));
                 teacher.setName(resultSet.getString("name"));
-//                teacher.setFaceInformationId(resultSet.getInt("faceInformationId"));
                 teacher.setPhoneNumber(resultSet.getString("phoneNumber"));
                 teacher.setSex((resultSet.getInt("sex") == 1) ? true : false);
                 teacher.setTeacherNumber(resultSet.getString("teacherNumber"));
 
                 teacher.setTeachClassId(resultSet.getInt("teachClassId"));
-//                MyClassesDAO myClassesDAO=new MyClassesDAO();
-//                MyClass myClass = (MyClass) myClassesDAO.findById(myClassId);
-//                teacher.setTeachClass(myClass);
-
                 return teacher;
             }
         } catch (SQLException e) {
@@ -249,7 +304,23 @@ public class DatabaseManager {
         return null;
     }
 
-    //查找类
+    public int getTeacherClassIdByTeaId(int teacherId) {
+        try {
+            String query = "SELECT * FROM Teacher WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, teacherId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("teachClassId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+//}
+//    查找类
     public Person findPersonById(int id) {
 //        String SQL = "SELECT * FROM Person WHERE id = ?";
 //        Person person = null;
@@ -318,27 +389,19 @@ public class DatabaseManager {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                // 假设Student和Course有对应的方法从ResultSet中加载数据
                 if (rs.getInt("studentId") != 0 && !students.contains(new Student(rs.getInt("studentId")))) {
-//                    students.add(new Student(rs.getInt("studentId"))); // 假设Student有一个能接受ResultSet并从中加载数据的构造函数
                     students.add(findStudentById(rs.getInt("studentId")));
                 }
                 if (rs.getInt("courseId") != 0 && !courses.contains(new Course(rs.getInt("courseId")))) {
-//                    courses.add(new Course(rs.getInt("courseId"))); // 假设Course有一个类似的构造函数
                     courses.add(findCourseId(rs.getInt("courseId")));
                 }
-
-                // 仅在第一次迭代时设置非集合属性
                 if (rs.isFirst()) {
                     myClass.setId(rs.getInt("id"));
                     myClass.setName(rs.getString("name"));
-                    // 设置LeaveRecordFactory，需要实现相应的加载逻辑
                 }
             }
-
             myClass.setStudents(students);
             myClass.setCourses(courses);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -523,7 +586,7 @@ public class DatabaseManager {
         return classRoom;
     }
 
-    // 获取该教室对应的所有课程
+//     获取该教室对应的所有课程
     private Course[] getCoursesForClassRoom(int classRoomId) {
         Course[] courses = null;
 
@@ -585,7 +648,7 @@ public class DatabaseManager {
         return attendanceRecord;
     }
 
-    // 获取时间信息
+//     获取时间信息
     private SchoolTime getTimeForAttendanceRecord(int timeId) {
         SchoolTime time = null;
 

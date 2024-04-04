@@ -1,4 +1,4 @@
-\package test;
+package test;
 
 import Camera.startCheck.Check;
 import Database.MyClassesDAO;
@@ -11,10 +11,10 @@ import java.sql.SQLException;
 
 public class Test {
     public static void main(String[] args) throws SQLException {
-//        FaceController faceController=new FaceController();
-//        Student lly=new Student("lly","123",true,"1");
-//        Student shl=new Student("shl","123",true,"2");
-//        Student lhy=new Student("lhy","123",true,"3");
+        FaceController faceController=new FaceController();
+        Student lly=new Student("lly","123",true,"1");
+        Student shl=new Student("shl","123",true,"2");
+        Student lhy=new Student("lhy","123",true,"3");
 
         MyClassesDAO myClassesDAO=new MyClassesDAO();
 
