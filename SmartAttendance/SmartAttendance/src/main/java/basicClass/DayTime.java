@@ -46,6 +46,7 @@ public enum DayTime {
             case 15:
                 return minute < 40 ? afternoon2 : aRest2_3;
             case 16:
+//                return afternoon4;
                 return minute < 40 ? afternoon3 : aRest3_4;
             case 17:
                 return minute < 40 ? afternoon4 : other;

@@ -65,7 +65,7 @@ public class SchoolTime {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SchoolTime that = (SchoolTime) o;
-        return this.week==that.week&&this.courseTime.equals(that.courseTime);
+        return this.week==that.week&&this.getDayTime().equals(that.getDayTime())&&this.getDayInWeek()== that.getDayInWeek();
     }
 
     @Override
@@ -76,7 +76,7 @@ public class SchoolTime {
     public boolean ifRestTime(){
         return (this.courseTime.getNextCourseTimeNumber()==0)?false:true;
     }
-    public boolean ifCourseTime(){return (this.courseTime.getDayTimeNumber()==0)?true:false;}
+    public boolean ifCourseTime(){return (this.courseTime.getDayTimeNumber()==0)?false:true;}
 
 
 
@@ -137,5 +137,8 @@ public class SchoolTime {
         }else {
             return false;
         }
+    }
+    public SchoolTime getNextSchoolTime(){
+        return new SchoolTime(this.week,this.getDayInWeek(),DayTime.numberToDayTime(this.getDayTime().dayTimeToNumber()+1));
     }
 }

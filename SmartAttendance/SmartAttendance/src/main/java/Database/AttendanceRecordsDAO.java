@@ -99,16 +99,10 @@ public class AttendanceRecordsDAO extends BaseDAO {
                     attendanceRecord.setId(resultSet.getInt("id"));
                     CourseDAO courseDAO = new CourseDAO();
                     attendanceRecord.setCourseName(courseDAO.findById(resultSet.getInt("courseId")).getName());
-//                    DatabaseManager databaseManager = new DatabaseManager();
-
                     attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
                             resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
-
-
-//                    TimeDao timeDao = new TimeDao();
-//                    attendanceRecord.setTime(timeDao.findSchoolTimeById(resultSet.getInt("timeId")));
-
                     attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
+                    attendanceRecord.setStudentId(attendanceRecord.getStudentId());
                     return attendanceRecord;
                 }
             }
@@ -134,6 +128,7 @@ public class AttendanceRecordsDAO extends BaseDAO {
 
                     attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
                             resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+                    attendanceRecord.setStudentId(id);
 
 
                     attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
@@ -144,12 +139,41 @@ public class AttendanceRecordsDAO extends BaseDAO {
         return attendanceRecordArrayList;
     }
 
+
+    public AttendanceRecord findByStuTime(int stuId,SchoolTime schoolTime) throws SQLException {
+        String query = "SELECT * FROM AttendanceRecord WHERE studentId = ? and weekNo=? and dayNo=? and timeNo=?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, stuId);
+            statement.setInt(2, schoolTime.getWeek());
+            statement.setInt(3, schoolTime.getDayInWeek());
+            statement.setInt(4, schoolTime.getDayTime().dayTimeToNumber());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    AttendanceRecord attendanceRecord = new AttendanceRecord();
+                    attendanceRecord.setId(resultSet.getInt("id"));
+                    CourseDAO courseDAO = new CourseDAO();
+                    attendanceRecord.setCourseName(courseDAO.findById(resultSet.getInt("courseId")).getName());
+                    attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
+                            resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+                    attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
+                    attendanceRecord.setStudentId(stuId);
+                    return attendanceRecord;
+                }
+            }
+        }
+        return null;
+    }
+
     public void changeStatus(AttendanceRecord attendanceRecord, Status status) throws SQLException {
 
-        String query = "UPDATE AttendanceRecord SET status = ? WHERE id = ?";
+        String query = "UPDATE AttendanceRecord SET status = ? WHERE weekNo = ? and dayNo=? and timeNo=? and studentId=?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, status.toString());
-            statement.setInt(2, attendanceRecord.getId());
+//            statement.setInt(2, attendanceRecord.getId());
+            statement.setInt(2, attendanceRecord.getTime().getWeek());
+            statement.setInt(3, attendanceRecord.getTime().getDayInWeek());
+            statement.setInt(4, attendanceRecord.getTime().getDayTime().dayTimeToNumber());
+            statement.setInt(5, attendanceRecord.getStudentId());
             statement.executeUpdate();
         }
 

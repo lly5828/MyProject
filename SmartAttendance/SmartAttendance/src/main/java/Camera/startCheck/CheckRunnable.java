@@ -3,8 +3,12 @@ package Camera.startCheck;
 import Camera.Camera;
 import Database.AttendanceRecordsDAO;
 import Database.BaseDAO;
+import Database.LeaveRecordFactoryDao;
+import Database.MyClassesDAO;
 import basicClass.*;
 import basicClass.LeaveInfo.LeaveRecord;
+import basicClass.LeaveInfo.LeaveRecordFactory;
+import basicClass.LeaveInfo.LeaveResult;
 
 import java.sql.SQLException;
 
@@ -43,30 +47,38 @@ public class CheckRunnable implements Runnable {
 
     private void setLeave(SchoolTime schoolTime) {
         int courseNum = schoolTime.getCourseTime().getDayTimeNumber();
-        for (Student student : myClass.getStudents()) {
-            AttendanceRecord attendanceRecord = student.getAttendanceRecordByTime(schoolTime);
-            if (attendanceRecord.getStatus() == Status.waiting) {
-                boolean ifAsked = false;
-                try {
-                    AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
-
-                    for (LeaveRecord leaveRecord : myClass.getLeaveRecordFactory().getLeaveRecord(student)) {
-                        if (leaveRecord.ifDuring(schoolTime)) {
+        try {
+            AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
+            MyClassesDAO myClassesDAO=new MyClassesDAO();
+            LeaveRecordFactoryDao leaveRecordFactoryDao=new LeaveRecordFactoryDao();
+            int factoryId=myClassesDAO.getFactoryIdByClassId(myClass.getId());
+            LeaveRecordFactory leaveRecordFactory=(LeaveRecordFactory) leaveRecordFactoryDao.findById(factoryId);
+            for (Student student : myClass.getStudents()) {
+                AttendanceRecord attendanceRecord = attendanceRecordsDAO.findByStuTime(student.getId(), schoolTime);
+                if (attendanceRecord.getStatus() == Status.waiting) {
+                    boolean ifAsked = false;
+                    for (LeaveRecord leaveRecord : leaveRecordFactory.getLeaveRecord(student.getStudentNumber())) {
+                        if (leaveRecord.ifDuring(schoolTime)&&leaveRecord.getLeaveResult()== LeaveResult.pass) {
                             attendanceRecord.setStatus(Status.leave);
-                            attendanceRecordsDAO.changeStatus(attendanceRecord,Status.leave);
+                            attendanceRecordsDAO.changeStatus(attendanceRecord, Status.leave);
                             ifAsked = true;
                             break;
                         }
                     }
                     if (!ifAsked) {
                         attendanceRecord.setStatus(Status.absent);
-                        attendanceRecordsDAO.changeStatus(attendanceRecord,Status.absent);
+                        attendanceRecordsDAO.changeStatus(attendanceRecord, Status.absent);
                     }
-                    BaseDAO.closeConnection(attendanceRecordsDAO.connection);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+
+
                 }
             }
+            BaseDAO.closeConnection(attendanceRecordsDAO.connection);
+            BaseDAO.closeConnection(myClassesDAO.connection);
+            BaseDAO.closeConnection(leaveRecordFactoryDao.connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
     }
 }

@@ -230,7 +230,8 @@ public class InterfaceToWeb {
         ArrayList<AttendanceRecord> attendanceRecords = attendanceRecordsDAO.findByStudentId(Integer.parseInt(studentNum));
         BaseDAO.closeConnection(attendanceRecordsDAO.connection);
         ArrayList<AttendanceRecord> thisMonthAR = new ArrayList<>();
-        SchoolTime now = new SchoolTime(1, 1, DayTime.morning1);
+//        SchoolTime now = new SchoolTime(1, 1, DayTime.morning1);
+        SchoolTime now=SchoolTime.getNowSchoolTime();
         DatabaseManager databaseManager = new DatabaseManager();
         int myClassId = databaseManager.getStudentClassIdByStuId(Integer.parseInt(studentNum));
         BaseDAO.closeConnection(databaseManager.conn);

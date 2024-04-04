@@ -45,6 +45,11 @@ public class Person {
         this.faceInformation=faceController.addFace(imageInfo);
         faceController.close();
     }
+    public void initFace(){
+        FaceController faceController=new FaceController();
+        this.faceInformation.setFaceFeature(faceController.addFace(this.faceInformation.getPhotoPath()).getFaceFeature());
+        faceController.close();
+    }
 
 //    获取人脸信息
     public FaceInformation getFaceInformation(){

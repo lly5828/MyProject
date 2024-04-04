@@ -40,21 +40,29 @@ public class Camera {
         if (student != null) {
             try {
                 AttendanceRecordsDAO attendanceRecordsDAO = new AttendanceRecordsDAO();
-                for (AttendanceRecord attendanceRecord : student.getAttendanceRecords()) {
-                    if (attendanceRecord.getTime().equals(schoolTime)) {
-
-                        attendanceRecordsDAO.changeStatus(attendanceRecord, Status.normal);
-                        BaseDAO.closeConnection(attendanceRecordsDAO.connection);
-
-                        return;
-                    }
+//                for (AttendanceRecord attendanceRecord : attendanceRecordsDAO.findByStudentId(student.getId())) {
+//                    if (attendanceRecord.getTime().equals(schoolTime.getNextSchoolTime())) {
+//                        System.out.println(attendanceRecord.getStatus());
+                AttendanceRecord attendanceRecord = attendanceRecordsDAO.findByStuTime(student.getId(),schoolTime.getNextSchoolTime());
+                if (attendanceRecord.getStatus() != Status.waiting) {
+                    return;
                 }
-
-                AttendanceRecord attendanceRecord=new AttendanceRecord(schoolTime, course.getName(), course.getId(), Status.normal, Integer.parseInt(student.getStudentNumber()));
-                attendanceRecordsDAO.insert(attendanceRecord);
-                student.addAttendanceRecord(attendanceRecord);
+                attendanceRecordsDAO.changeStatus(attendanceRecord, Status.normal);
                 BaseDAO.closeConnection(attendanceRecordsDAO.connection);
-//            System.out.println(student.getName()+schoolTime+courseName+Status.normal);
+                System.out.println(student.getName() + Status.normal);
+                schoolTime.getNextSchoolTime().showSchoolTime();
+                System.out.println(schoolTime.getNextSchoolTime().getDayTime().dayTimeToNumber());
+//                return;
+//                    }
+//                }
+
+
+//                AttendanceRecord attendanceRecord = new AttendanceRecord(schoolTime, course.getName(), course.getId(), Status.normal, Integer.parseInt(student.getStudentNumber()));
+//                attendanceRecordsDAO.insert(attendanceRecord);
+//                student.addAttendanceRecord(attendanceRecord);
+//                BaseDAO.closeConnection(attendanceRecordsDAO.connection);
+//                System.out.println(student.getName() + Status.normal);
+//                schoolTime.showSchoolTime();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

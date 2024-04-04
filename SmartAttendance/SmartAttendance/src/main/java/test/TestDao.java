@@ -52,29 +52,29 @@ public class TestDao {
         myClass.addStudent(shl);
         myClass.addStudent(lhy);
 
-        clear();
-        addWholeClass(myClass);
+//        clear();
+//        addWholeClass(myClass);
 
 
         DatabaseManager databaseManager=new DatabaseManager();
-
-        MyClassesDAO myClassesDAO=new MyClassesDAO();
-        MyClass my=(MyClass) myClassesDAO.findById(myClass.getId());
+//
+//        MyClassesDAO myClassesDAO=new MyClassesDAO();
+//        MyClass my=(MyClass) myClassesDAO.findById(myClass.getId());
         Student llyGET=databaseManager.findStudentById(lly.getId());
         Teacher teaMGET=databaseManager.findTeacherById(teaM.getId());
-
-        LeaveRecordFactoryDao leaveRecordFactoryDao=new LeaveRecordFactoryDao();
-        leaveRecordFactoryDao.addLeaveRecord(my.getLeaveRecordFactory(),new SchoolTime(1,2,DayTime.morning1),"rex",llyGET.getId(),32767);
+//
+//        LeaveRecordFactoryDao leaveRecordFactoryDao=new LeaveRecordFactoryDao();
+//        leaveRecordFactoryDao.addLeaveRecord(my.getLeaveRecordFactory(),new SchoolTime(14,2,DayTime.morning1),"rex",llyGET.getId(),32767);
 
         AttendanceRecordsDAO attendanceRecordsDAO=new AttendanceRecordsDAO();
-        attendanceRecordsDAO.changeStatus(llyGET.getAttendanceRecordByTime(new SchoolTime(1,1,DayTime.morning2)),Status.normal);
-        attendanceRecordsDAO.changeStatus(llyGET.getAttendanceRecordByTime(new SchoolTime(1,1,DayTime.morning3)),Status.normal);
+        attendanceRecordsDAO.changeStatus(llyGET.getAttendanceRecordByTime(new SchoolTime(14,1,DayTime.morning1)),Status.normal);
+        attendanceRecordsDAO.changeStatus(llyGET.getAttendanceRecordByTime(new SchoolTime(14,1,DayTime.morning3)),Status.normal);
 
 
-        LeaveRecordDAO leaveRecordDAO=new LeaveRecordDAO();
-        leaveRecordDAO.changeResult((LeaveRecord) leaveRecordDAO.findById(1), LeaveResult.pass,teaMGET);
-
-        System.out.println("x");
+//        LeaveRecordDAO leaveRecordDAO=new LeaveRecordDAO();
+//        leaveRecordDAO.changeResult((LeaveRecord) leaveRecordDAO.findById(1), LeaveResult.pass,teaMGET);
+//
+//        System.out.println("x");
     }
 
     public static void addWholeClass(MyClass myClass) throws SQLException {
