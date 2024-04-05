@@ -19,14 +19,29 @@ import { request } from '@umijs/max';
 //   }
 
 //获取学生缺勤记录 /test/AttendanceRecordServlet post
+// export async function Attendance(body: { [key: string]: any }) {
+//   return request<API.Attendance>('/test/AttendanceRecordServlet', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     data: body,
+//   });
+// }
 export async function Attendance(body: { [key: string]: any }) {
-  return request<API.Attendance>('/test/AttendanceRecordServlet', {
+  const params = new URLSearchParams(body);
+
+  const url = `/test/AttendanceRecordServlet?${params}`;
+
+  const response = await request<API.Attendance>(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
+    timeout: 100000, // 设置超时时间为 100 秒
   });
+
+  return response;
 }
 
 // // 学生提交请假申请接口 /test/AskForLeaveServlet post
@@ -57,14 +72,29 @@ export async function AskForLeave(body: { [key: string]: any }) {
   }
 
 //教师获取学生请假申请接口 /test/DealLeaveServlet
+// export async function DealLeave(body: { [key: string]: any }) {
+//   return request<API.DealLeave>('/test/DealLeaveServlet', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     data: body,
+//   });
+// }
+
 export async function DealLeave(body: { [key: string]: any }) {
-  return request<API.DealLeave>('/test/DealLeaveServlet', {
+  const params = new URLSearchParams(body);
+
+  const url = `/test/DealLeaveServlet?${params}`;
+
+  const response = await request<API.DealLeave>(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
   });
+
+  return response;
 }
 
 //教师审批学生请假申请接口 /test/DealLeaveServlet post

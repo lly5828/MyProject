@@ -5,8 +5,10 @@ import { Calendar, Col, Row, Tag } from 'antd';
 import type { CalendarProps } from 'antd';
 import dayjs from 'dayjs';
 import { Attendance } from '@/services/user/api'
+import { useModel } from '@umijs/max';
 
 const App: React.FC = () => {
+  const { initialState, setInitialState } = useModel('@@initialState');
   const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>['mode']) => {
     console.log(value.format('YYYY-MM-DD'), mode);
   };
@@ -14,7 +16,7 @@ const App: React.FC = () => {
   const [attendanceDate, setattendanceDate] = useState<API.AttData[]>([])
 
   useEffect(() => {
-    Attendance({ studentID: '123' }).then((res: any) => {
+    Attendance({ studentID: initialState?.currentUser.data?.studentNumber }).then((res: any) => {
       setattendanceDate(res.data)
     })
   }, [])

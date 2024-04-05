@@ -4,6 +4,7 @@ import type { TableColumnsType } from 'antd';
 import { CardT } from '@/components'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { DealLeave, GetDealLeave } from '@/services/user/api'
+import { useModel } from '@umijs/max';
 
 interface DataType {
   key: React.Key;
@@ -13,8 +14,10 @@ interface DataType {
 }
 
 export default function Handle() {
+  const { initialState, setInitialState } = useModel('@@initialState');
+  const teacherID = initialState?.currentUser.data?.teacherNum
   const agree = (v:any, bol:boolean) => {
-    GetDealLeave({teacherID: '123',leaveRecordNum:v, result:bol}).then((res:API.AskForLeave) => {
+    GetDealLeave({teacherID,leaveRecordNum:v, result:bol}).then((res:API.AskForLeave) => {
       if(res.code === 0){
         message.open({
           type: 'success',
@@ -82,7 +85,7 @@ export default function Handle() {
   const [spinning,setSpinning] = useState(true)
 
   useEffect(() => {
-    DealLeave({teacherID:'111'}).then((res:API.DealLeave) => {
+    DealLeave({teacherID}).then((res:API.DealLeave) => {
       if(res.code === 0){
         setData(res?.data)
         setSpinning(false)
