@@ -16,9 +16,22 @@ interface DataType {
 export default function Handle() {
   const { initialState, setInitialState } = useModel('@@initialState');
   const teacherID = initialState?.currentUser.data?.teacherNum
+  const [data, setData] = useState<API.DeaData[]>()
+  const [spinning,setSpinning] = useState(true)
+
+  const Deal = () => {
+    DealLeave({teacherID}).then((res:API.DealLeave) => {
+      if(res.code === 0){
+        setData(res?.data)
+        setSpinning(false)
+      }
+    })
+  }
   const agree = (v:any, bol:boolean) => {
+    setSpinning(true)
     GetDealLeave({teacherID,leaveRecordNum:v, result:bol}).then((res:API.AskForLeave) => {
       if(res.code === 0){
+        Deal()
         message.open({
           type: 'success',
           content: '审批成功！',
@@ -81,16 +94,8 @@ export default function Handle() {
     },
   ];
 
-  const [data, setData] = useState<API.DeaData[]>()
-  const [spinning,setSpinning] = useState(true)
-
   useEffect(() => {
-    DealLeave({teacherID}).then((res:API.DealLeave) => {
-      if(res.code === 0){
-        setData(res?.data)
-        setSpinning(false)
-      }
-    })
+    Deal()
   },[])
 
   return (
