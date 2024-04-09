@@ -155,6 +155,23 @@ public class DatabaseManager {
         }
         return studentArrayList;
     }
+    public ArrayList<Integer> findStudentsIdByMyClassId(int myClassId) {
+        ArrayList<Integer> studentArrayList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM Student WHERE MyClassId = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, myClassId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+//                Student student = findStudentById(resultSet.getInt("id"));
+                studentArrayList.add(resultSet.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return studentArrayList;
+    }
 
     public Student getStudentInfoByStuId(int studentId) {
         try {
@@ -317,6 +334,21 @@ public class DatabaseManager {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public String getTeacherNameByTeaId(int teacherId) {
+        try {
+            String query = "SELECT * FROM Teacher WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, teacherId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "null";
     }
 
 //}

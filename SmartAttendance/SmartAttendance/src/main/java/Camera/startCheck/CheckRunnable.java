@@ -35,11 +35,17 @@ public class CheckRunnable implements Runnable {
     @Override
     public void run() {
         while (flag) {
+//            boolean flagA=true;
             now = SchoolTime.getNowSchoolTime();
             if (now.ifRestTime()) {
                 camera.takePhotoAndAnalyse(myClass, now);
+//                flagA=false;
             } else if (now.ifCourseTime()) {
-                setLeave(now);
+//                if(flagA==false){
+                    setLeave(now);
+//                    flagA=true;
+//                }
+
             }
 
         }
@@ -81,4 +87,6 @@ public class CheckRunnable implements Runnable {
         }
 
     }
+
+
 }

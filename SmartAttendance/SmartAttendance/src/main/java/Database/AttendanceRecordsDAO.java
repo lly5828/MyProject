@@ -138,6 +138,58 @@ public class AttendanceRecordsDAO extends BaseDAO {
         }
         return attendanceRecordArrayList;
     }
+    public ArrayList<AttendanceRecord> findAbsentByStudentId(int id) throws SQLException {
+        ArrayList<AttendanceRecord> attendanceRecordArrayList = new ArrayList<>();
+        String query = "SELECT * FROM AttendanceRecord WHERE studentId = ? and status=?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.setString(2, "absent");
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    AttendanceRecord attendanceRecord = new AttendanceRecord();
+                    attendanceRecord.setId(resultSet.getInt("id"));
+                    attendanceRecord.setCourseId(resultSet.getInt("courseId"));
+                    CourseDAO courseDAO = new CourseDAO();
+                    attendanceRecord.setCourseName(courseDAO.findById(attendanceRecord.getCourseId()).getName());
+                    BaseDAO.closeConnection(courseDAO.connection);
+                    attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
+                            resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+                    attendanceRecord.setStudentId(id);
+                    attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
+                    attendanceRecordArrayList.add(attendanceRecord);
+                }
+            }
+        }
+        return attendanceRecordArrayList;
+    }
+
+    public ArrayList<AttendanceRecord> findTodayAbsentByStudentId(int id,SchoolTime schoolTime) throws SQLException {
+        ArrayList<AttendanceRecord> attendanceRecordArrayList = new ArrayList<>();
+        String query = "SELECT * FROM AttendanceRecord WHERE studentId = ? and status=? and weekNo=? and dayNo=?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.setString(2, "absent");
+            statement.setInt(3, schoolTime.getWeek());
+            statement.setInt(4, schoolTime.getDayInWeek());
+//            statement.setInt(5, schoolTime.getDayTime().dayTimeToNumber());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    AttendanceRecord attendanceRecord = new AttendanceRecord();
+                    attendanceRecord.setId(resultSet.getInt("id"));
+                    attendanceRecord.setCourseId(resultSet.getInt("courseId"));
+                    CourseDAO courseDAO = new CourseDAO();
+                    attendanceRecord.setCourseName(courseDAO.findById(attendanceRecord.getCourseId()).getName());
+                    BaseDAO.closeConnection(courseDAO.connection);
+                    attendanceRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
+                            resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+                    attendanceRecord.setStudentId(id);
+                    attendanceRecord.setStatus(Status.valueOf(resultSet.getString("status")));
+                    attendanceRecordArrayList.add(attendanceRecord);
+                }
+            }
+        }
+        return attendanceRecordArrayList;
+    }
 
 
     public AttendanceRecord findByStuTime(int stuId,SchoolTime schoolTime) throws SQLException {

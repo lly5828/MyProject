@@ -191,23 +191,36 @@ public class LeaveRecordDAO extends BaseDAO {
                     leaveRecord = new LeaveRecord();
                     leaveRecord.setLeaveRecordNum(resultSet.getInt("leaveRecordNum"));
                     leaveRecord.setReason(resultSet.getString("reason"));
-//                    DatabaseManager databaseManager = new DatabaseManager();
-//                    Student student = databaseManager.findStudentById(resultSet.getInt("studentApplyId"));
-//                    Teacher teacher = databaseManager.findTeacherById(resultSet.getInt("teacherDealId"));
-//                    leaveRecord.setStudent_apply(student);
-//                    leaveRecord.setTeacher_deal(teacher);
                     leaveRecord.setStudentApplyId(resultSet.getInt("studentApplyId"));
                     leaveRecord.setTeacherDealId(resultSet.getInt("teacherDealId"));
-
-
-
-
                     leaveRecord.setLeaveResult(LeaveResult.valueOf(resultSet.getString("leaveResult")));
                     leaveRecord.setFactoryId(id);
-
                     leaveRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
                             resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
+                    leaveRecordArrayList.add(leaveRecord);
+                }
+            }
+        }
+        return leaveRecordArrayList;
+    }
 
+    public ArrayList<LeaveRecord> findLeaveRecordByStudentId(int id) throws SQLException {
+        ArrayList<LeaveRecord> leaveRecordArrayList = new ArrayList<>();
+        String query = "SELECT * FROM LeaveRecord WHERE studentApplyId = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    LeaveRecord leaveRecord = new LeaveRecord();
+                    leaveRecord = new LeaveRecord();
+                    leaveRecord.setLeaveRecordNum(resultSet.getInt("leaveRecordNum"));
+                    leaveRecord.setReason(resultSet.getString("reason"));
+                    leaveRecord.setStudentApplyId(resultSet.getInt("studentApplyId"));
+                    leaveRecord.setTeacherDealId(resultSet.getInt("teacherDealId"));
+                    leaveRecord.setLeaveResult(LeaveResult.valueOf(resultSet.getString("leaveResult")));
+                    leaveRecord.setFactoryId(id);
+                    leaveRecord.setTime(new SchoolTime(resultSet.getInt("weekNo"),
+                            resultSet.getInt("dayNo"), DayTime.numberToDayTime(resultSet.getInt("timeNo") )));
                     leaveRecordArrayList.add(leaveRecord);
                 }
             }

@@ -22,7 +22,6 @@ public class AskForLeaveServlet extends HttpServlet {
         String stuID = req.getParameter("studentID");
         String reason = req.getParameter("reason");
         String time = req.getParameter("time");
-//        Student student = InterfaceToWeb.getStudent(stuID);
         int code = InterfaceToWeb.applyLeave(stuID, InterfaceToWeb.getDate(time,DayTime.morning1), reason);
         jsonAskForLeave = new JsonData<>(code, "finish");
         jsonAskForLeave.postData(resp);

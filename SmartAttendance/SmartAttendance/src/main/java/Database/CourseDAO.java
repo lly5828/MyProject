@@ -84,13 +84,11 @@ public class CourseDAO extends BaseDAO {
                     DatabaseManager databaseManager=new DatabaseManager();
                     ClassRoomDAO classRoomDAO = new ClassRoomDAO(connection);  // 创建 ClassRoomDAO 实例
                     course.setMyClassId(resultSet.getInt("myClassId"));
-//                    MyClass myClass = (MyClass) myClassDAO.findById(resultSet.getInt("myClassId"));  // 通过 myClassDAO 调用 findById 方法
                     Teacher teacher = databaseManager.findTeacherById(resultSet.getInt("teacherId"));
                     ClassRoom classRoom = (ClassRoom) classRoomDAO.findById(resultSet.getInt("classRoomId"));  // 通过 classRoomDAO 调用 findById 方法
                     TimeDao timeDao=new TimeDao();
                     ArrayList<CourseTime> courseTimeArrayList=timeDao.findCourseTimesByCourseId(course.getId());
                     BaseDAO.closeConnection(timeDao.connection);
-//                    course.setMyClass(myClass);  // 设置 MyClass 对象到 course 中
                     course.setTeacher(teacher);  // 设置 Teacher 对象到 course 中
                     course.setClassRoom(classRoom);  // 设置 ClassRoom 对象到 course 中
                     course.setCourseTimes(courseTimeArrayList);
@@ -119,14 +117,25 @@ public class CourseDAO extends BaseDAO {
                     TimeDao timeDao=new TimeDao();
                     ArrayList<CourseTime> courseTimeArrayList=timeDao.findCourseTimesByCourseId(course.getId());
                     BaseDAO.closeConnection(timeDao.connection);
-//                    course.setMyClass(myClass);  // 设置 MyClass 对象到 course 中
                     course.setTeacher(teacher);  // 设置 Teacher 对象到 course 中
-//                    course.setClassRoom(classRoom);  // 设置 ClassRoom 对象到 course 中
                     course.setCourseTimes(courseTimeArrayList);
                     courseArrayList.add(course);
                 }
             }
         }
         return courseArrayList;
+    }
+
+    public String getCourseNameById(int id) throws SQLException {
+        String sql = "SELECT * FROM Course WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("name");
+                }
+            }
+        }
+        return null;
     }
 }

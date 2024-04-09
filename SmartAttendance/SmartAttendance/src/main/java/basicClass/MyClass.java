@@ -27,11 +27,12 @@ public class MyClass {
 
     public void showCourseTable() {
         System.out.println("Class" + this.name + "Course Table");
-//        for (int i=1;i<8;i++){
-//            for (int j = 0; j < 9; j++) {
-//
-//            }
-//        }
+        for (int i=1;i<6;i++){
+            for (int j = 1; j < 9; j++) {
+                System.out.print(courseTable[i][j].getName()+" ");
+            }
+            System.out.println();
+        }
     }
 
 

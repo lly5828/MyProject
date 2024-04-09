@@ -20,8 +20,12 @@ public class JsonData<T> {
         this.code = code;
         this.message = message;
     }
+    public JsonData(int code) {
+        this.code = code;
+    }
 
     public void postData(HttpServletResponse resp) throws IOException {
+        resp.setCharacterEncoding("UTF-8");
         Gson gson=new Gson();
         String json=gson.toJson(this);
         resp.getWriter().write(json);

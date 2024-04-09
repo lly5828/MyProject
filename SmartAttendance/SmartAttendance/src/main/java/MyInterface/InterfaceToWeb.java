@@ -1,8 +1,10 @@
 package MyInterface;
 
 import Database.*;
+import MyInterface.info.AbsentInfo;
 import MyInterface.info.AttendanceInfo;
 import MyInterface.info.LeaveInfo;
+import MyInterface.info.ResultInfo;
 import basicClass.*;
 import basicClass.LeaveInfo.LeaveRecord;
 import basicClass.LeaveInfo.LeaveRecordFactory;
@@ -67,9 +69,7 @@ public class InterfaceToWeb {
         return teacher;
     }
 
-    public static LeaveRecordFactory getLeaveRecord(int teacherId) throws SQLException {
-//        MyClass myClass = teacher.getTeachClassBySQL();
-
+    public static LeaveRecordFactory getLeaveRecordByTea(int teacherId) throws SQLException {
         try {
             LeaveRecordFactoryDao leaveRecordFactoryDao = new LeaveRecordFactoryDao();
             DatabaseManager databaseManager = new DatabaseManager();
@@ -79,10 +79,6 @@ public class InterfaceToWeb {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        //
-//        return new LeaveRecordFactory("aaa");
-        //
     }
 
     public static LeaveRecordFactory getLeaveRecordFactory(MyClass myClass) {
@@ -126,8 +122,9 @@ public class InterfaceToWeb {
                 }
             }
         }
-        if (dealed.size() != 0)
-            result.addAll(dealed);
+//        注释后只显示未处理记录
+//        if (dealed.size() != 0)
+//            result.addAll(dealed);
         return result;
     }
 
@@ -270,5 +267,104 @@ public class InterfaceToWeb {
             }
         }
         return result;
+    }
+
+    public static String[][] getCourseTableStu(String studentId) throws SQLException {
+        DatabaseManager databaseManager=new DatabaseManager();
+        int myClassId= databaseManager.getStudentClassIdByStuId(Integer.parseInt(studentId));
+        BaseDAO.closeConnection(databaseManager.conn);
+        CourseDAO courseDAO=new CourseDAO();
+        ArrayList<Course> courseArrayList=courseDAO.findByMyClassId(myClassId);
+        BaseDAO.closeConnection(courseDAO.connection);
+        MyClass myClass=new MyClass();
+        myClass.setCourses(courseArrayList);
+        myClass.initCourseTable();
+        String[][] res=new String[5][8];
+        for (int i = 1; i < 6; i++) {
+            for (int j = 1; j < 9; j++) {
+                res[i-1][j-1]=myClass.getCourseTable()[i][j].getName();
+            }
+        }
+        return res;
+    }
+    public static String[][] getCourseTableTea(String teacherId) throws SQLException {
+        DatabaseManager databaseManager=new DatabaseManager();
+        int myClassId= databaseManager.getTeacherClassIdByTeaId(Integer.parseInt(teacherId));
+        BaseDAO.closeConnection(databaseManager.conn);
+        CourseDAO courseDAO=new CourseDAO();
+        ArrayList<Course> courseArrayList=courseDAO.findByMyClassId(myClassId);
+        BaseDAO.closeConnection(courseDAO.connection);
+        MyClass myClass=new MyClass();
+        myClass.setCourses(courseArrayList);
+        myClass.initCourseTable();
+        String[][] res=new String[5][8];
+        for (int i = 1; i < 6; i++) {
+            for (int j = 1; j < 9; j++) {
+                res[i-1][j-1]=myClass.getCourseTable()[i][j].getName();
+            }
+        }
+        return res;
+    }
+
+    public static ResultInfo getLeaveRecordByStu(int studentId){
+        try {
+            LeaveRecordDAO leaveRecordDAO=new LeaveRecordDAO();
+            ArrayList<LeaveRecord> leaveRecordArrayList=leaveRecordDAO.findLeaveRecordByStudentId(studentId);
+            BaseDAO.closeConnection(leaveRecordDAO.connection);
+            ResultInfo resultInfo=new ResultInfo();
+            if(leaveRecordArrayList.size()==0){
+                return resultInfo;
+            }else{
+                for(LeaveRecord leaveRecord:leaveRecordArrayList){
+                    resultInfo.add(leaveRecord);
+                }
+                return resultInfo;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //获取全部旷课记录
+    public static AbsentInfo getAbsentInfo(String teaId) throws SQLException {
+        DatabaseManager databaseManager=new DatabaseManager();
+        AttendanceRecordsDAO attendanceRecordsDAO=new AttendanceRecordsDAO();
+
+        int classId= databaseManager.getTeacherClassIdByTeaId(Integer.parseInt(teaId));
+        ArrayList<Integer> studentIds=databaseManager.findStudentsIdByMyClassId(classId);
+        ArrayList<AttendanceRecord> absentRecords=new ArrayList<>();
+        for(int studentId:studentIds){
+            absentRecords.addAll(attendanceRecordsDAO.findAbsentByStudentId(studentId));
+        }
+        int count=1;
+        AbsentInfo res=new AbsentInfo(SchoolTime.getNowSchoolTime());
+        for(AttendanceRecord attendanceRecord:absentRecords){
+            res.add(count,attendanceRecord);
+            count++;
+        }
+        BaseDAO.closeConnection(databaseManager.conn);
+        BaseDAO.closeConnection(attendanceRecordsDAO.connection);
+        return res;
+    }
+    public static AbsentInfo getTodayAbsentInfo(String teaId) throws SQLException {
+        DatabaseManager databaseManager=new DatabaseManager();
+        AttendanceRecordsDAO attendanceRecordsDAO=new AttendanceRecordsDAO();
+        SchoolTime today=SchoolTime.getNowSchoolTime();
+        int classId= databaseManager.getTeacherClassIdByTeaId(Integer.parseInt(teaId));
+        ArrayList<Integer> studentIds=databaseManager.findStudentsIdByMyClassId(classId);
+        ArrayList<AttendanceRecord> absentRecords=new ArrayList<>();
+        for(int studentId:studentIds){
+            absentRecords.addAll(attendanceRecordsDAO.findTodayAbsentByStudentId(studentId,today));
+        }
+        int count=1;
+        AbsentInfo res=new AbsentInfo(today);
+        for(AttendanceRecord attendanceRecord:absentRecords){
+            res.add(count,attendanceRecord);
+            count++;
+        }
+        BaseDAO.closeConnection(databaseManager.conn);
+        BaseDAO.closeConnection(attendanceRecordsDAO.connection);
+        return res;
     }
 }

@@ -21,13 +21,9 @@ public class AttendanceRecordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String stuID = req.getParameter("studentID");
         Student student = InterfaceToWeb.getStudent(stuID);
-        //
-//        Student testStu=new Student("xxx","xxx",true,"123");
-        //
         ArrayList<AttendanceInfo> attendanceInfos = null;
         try {
             attendanceInfos = InterfaceToWeb.attendanceSituation(stuID);
-//            attendanceInfos = InterfaceToWeb.attendanceSituation(student);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

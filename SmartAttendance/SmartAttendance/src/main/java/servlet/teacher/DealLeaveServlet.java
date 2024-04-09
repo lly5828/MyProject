@@ -29,22 +29,24 @@ public class DealLeaveServlet extends HttpServlet {
         JsonData<String> jsonDealLeave;
         LeaveRecordFactory leaveRecordFactory = null;
         try {
-            leaveRecordFactory = InterfaceToWeb.getLeaveRecord(Integer.parseInt(teaID));
+            leaveRecordFactory = InterfaceToWeb.getLeaveRecordByTea(Integer.parseInt(teaID));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         if (leaveRecordFactory == null) {
-            jsonDealLeave=new JsonData<>(1,"no apply need to deal");
+            jsonDealLeave=new JsonData<>(0,"no apply need to deal");
         } else {
             try {
                 int leaveRecordNum = Integer.parseInt(req.getParameter("leaveRecordNum"));
                 String result = req.getParameter("result");
                 if (result.equals("true")) {
                     InterfaceToWeb.dealLeaveRecord(teaID, leaveRecordNum, true);
-                    jsonDealLeave=new JsonData<>(0,"pass the apply");
+//                    jsonDealLeave=new JsonData<>(0,"pass the apply");
+                    jsonDealLeave=new JsonData<>(0);
                 } else if (result.equals("false")) {
                     InterfaceToWeb.dealLeaveRecord(teaID, leaveRecordNum, false);
-                    jsonDealLeave=new JsonData<>(0,"reject the apply");
+//                    jsonDealLeave=new JsonData<>(0,"reject the apply");
+                    jsonDealLeave=new JsonData<>(0);
                 } else {
                     jsonDealLeave=new JsonData<>(1,"error exception in result");
                 }

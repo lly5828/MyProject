@@ -12,6 +12,7 @@ import com.github.sarxos.webcam.WebcamUtils;
 import com.github.sarxos.webcam.util.ImageUtils;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.SQLException;
 
 public class Camera {
@@ -26,6 +27,7 @@ public class Camera {
     public void takePhotoAndAnalyse(MyClass myClass, SchoolTime schoolTime) {
         String fileName = getPhoto();
         analyse(myClass, schoolTime, myClass.getNextCourseByTime(schoolTime), fileName);
+        deletePhoto(fileName);
     }
 
     private String getPhoto() {
@@ -52,19 +54,25 @@ public class Camera {
                 System.out.println(student.getName() + Status.normal);
                 schoolTime.getNextSchoolTime().showSchoolTime();
                 System.out.println(schoolTime.getNextSchoolTime().getDayTime().dayTimeToNumber());
-//                return;
-//                    }
-//                }
 
-
-//                AttendanceRecord attendanceRecord = new AttendanceRecord(schoolTime, course.getName(), course.getId(), Status.normal, Integer.parseInt(student.getStudentNumber()));
-//                attendanceRecordsDAO.insert(attendanceRecord);
-//                student.addAttendanceRecord(attendanceRecord);
-//                BaseDAO.closeConnection(attendanceRecordsDAO.connection);
-//                System.out.println(student.getName() + Status.normal);
-//                schoolTime.showSchoolTime();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void deletePhoto(String filePath){
+        File file = new File(filePath);
+        // 判断目录或文件是否存在
+        if (!file.exists()) {  // 不存在返回 false
+            return ;
+        } else {
+            // 判断是否为文件
+            if (file.isFile()) {  // 为文件时调用删除文件方法
+                // 路径为文件且不为空则进行删除
+                if (file.isFile() && file.exists()) {
+                    file.delete();
+                }
             }
         }
     }

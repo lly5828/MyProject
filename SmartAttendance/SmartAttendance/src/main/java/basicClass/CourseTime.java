@@ -12,6 +12,9 @@ public class CourseTime {
         this.dayInWeek=dayInWeek;
         this.dayTime=dayTime;
     }
+    public CourseTime(int dayInWeek,int dayTime){
+        this(dayInWeek,DayTime.numberToCourseDaTime(dayTime));
+    }
 
     public CourseTime() {
     }

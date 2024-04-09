@@ -46,7 +46,6 @@ public enum DayTime {
             case 15:
                 return minute < 40 ? afternoon2 : aRest2_3;
             case 16:
-//                return afternoon4;
                 return minute < 40 ? afternoon3 : aRest3_4;
             case 17:
                 return minute < 40 ? afternoon4 : other;
@@ -96,6 +95,28 @@ public enum DayTime {
                 return 8;
             default:
                 return 0;
+        }
+    }
+    public static DayTime numberToCourseDaTime(int n) {
+        switch (n) {
+            case 1:
+                return morning1;
+            case 2:
+                return morning2;
+            case 3:
+                return morning3;
+            case 4:
+                return morning4;
+            case 5:
+                return afternoon1;
+            case 6:
+                return afternoon2;
+            case 7:
+                return afternoon3;
+            case 8:
+                return afternoon4;
+            default:
+                return other;
         }
     }
 
@@ -178,7 +199,28 @@ public enum DayTime {
         }
     }
 
-
+    public String toString(){
+        switch (this) {
+            case morning1:
+                return "早上第1节";
+            case morning2:
+                return "早上第2节";
+            case morning3:
+                return "早上第3节";
+            case morning4:
+                return "早上第4节";
+            case afternoon1:
+                return "下午第1节";
+            case afternoon2:
+                return "下午第2节";
+            case afternoon3:
+                return "下午第3节";
+            case afternoon4:
+                return "下午第4节";
+            default:
+                return "非上课时间";
+        }
+    }
 
 }
 

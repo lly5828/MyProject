@@ -1,5 +1,6 @@
 package MyInterface.info;
 
+import Database.BaseDAO;
 import Database.DatabaseManager;
 import Database.MyClassesDAO;
 import MyInterface.InterfaceToWeb;
@@ -27,9 +28,8 @@ public class LeaveInfo {
         this.myClass = myClassesDAO.getClassNameByClassId(databaseManager.getStudentClassIdByStuId(studentId));
         this.time =  InterfaceToWeb.getDateBySchoolTime(leaveRecord.getStartTime());
         this.reason = leaveRecord.getReason();
-
-
-
+        BaseDAO.closeConnection(databaseManager.conn);
+        BaseDAO.closeConnection(myClassesDAO.connection);
     }
 
     public LeaveInfo(int leaveRecordNum,String student, String studentID, String myClass, String time, String reason) {
