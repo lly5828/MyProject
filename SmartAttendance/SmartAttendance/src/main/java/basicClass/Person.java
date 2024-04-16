@@ -25,7 +25,7 @@ public class Person {
     }
     public Person(){
         this(null,null,true);
-        System.out.println("no information insert!");
+//        System.out.println("no information insert!");
     }
 
     public String getName(){

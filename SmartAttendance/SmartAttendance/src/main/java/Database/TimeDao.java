@@ -29,10 +29,12 @@ public class TimeDao {
     }
 
     public void insertCourseTime(CourseTime courseTime) throws SQLException {
-        String query = "INSERT INTO CourseTime (dayInWeek,dayTime) VALUES (?, ?)";
+//        String query = "INSERT INTO CourseTime (dayInWeek,dayTime) VALUES (?, ?)";
+        String query = "INSERT INTO CourseTime (dayInWeek,timeNo) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, courseTime.getDayInWeek());
-            statement.setString(2, courseTime.getDayTime().toString());
+//            statement.setString(2, courseTime.getDayTime().toString());
+            statement.setInt(2, courseTime.getDayTime().dayTimeToNumber());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
@@ -71,7 +73,8 @@ public class TimeDao {
                 if (resultSet.next()) {
                     courseTime = new CourseTime();
                     courseTime.setDayInWeek(resultSet.getInt("dayInWeek"));
-                    courseTime.setDayTime(DayTime.valueOf(resultSet.getString("dayTime")));
+//                    courseTime.setDayTime(DayTime.valueOf(resultSet.getString("dayTime")));
+                    courseTime.setDayTime(DayTime.numberToDayTime(resultSet.getInt("timeNo")));
                 }
             }
         }
@@ -87,7 +90,8 @@ public class TimeDao {
             while (resultSet.next()) {
                 CourseTime courseTime = new CourseTime();
                 courseTime.setDayInWeek(resultSet.getInt("dayInWeek"));
-                courseTime.setDayTime(DayTime.valueOf(resultSet.getString("dayTime")));
+//                courseTime.setDayTime(DayTime.valueOf(resultSet.getString("dayTime")));
+                courseTime.setDayTime(DayTime.numberToDayTime(resultSet.getInt("timeNo")));
                 courseTimeArrayList.add(courseTime);
             }
         } catch (SQLException e) {
@@ -97,10 +101,12 @@ public class TimeDao {
     }
 
     public void insertCourseTimeWithCourseId(CourseTime courseTime) throws SQLException {
-        String query = "INSERT INTO CourseTime (dayInWeek,dayTime,courseId) VALUES (?, ?,?)";
+//        String query = "INSERT INTO CourseTime (dayInWeek,dayTime,courseId) VALUES (?, ?,?)";
+        String query = "INSERT INTO CourseTime (dayInWeek,timeNo,courseId) VALUES (?, ?,?)";
         try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, courseTime.getDayInWeek());
-            statement.setString(2, courseTime.getDayTime().toString());
+//            statement.setString(2, courseTime.getDayTime().toString());
+            statement.setInt(2, courseTime.getDayTime().dayTimeToNumber());
             statement.setInt(3, courseTime.getCourseId());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();

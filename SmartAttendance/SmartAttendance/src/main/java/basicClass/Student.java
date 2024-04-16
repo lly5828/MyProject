@@ -47,7 +47,7 @@ public class Student extends Person{
     }
     private ArrayList<AttendanceRecord> initAttendanceRecord(){
         ArrayList<AttendanceRecord> attendanceRecordArrayList=new ArrayList<>();
-        for (int i = 14; i <=15 ; i++) {
+        for (int i = 14; i <=18 ; i++) {
             for (int j = 1; j <=5 ; j++) {
                 for (DayTime k = DayTime.morning1; k !=null ; k=k.nextCourseDayTime()) {
                     attendanceRecordArrayList.add(new AttendanceRecord(new SchoolTime(i,j,k),myClass.getCourseTable()[j][k.courseToNumber()].getName(),myClass.getCourseTable()[j][k.courseToNumber()].getId(),Status.waiting,Integer.parseInt(this.getStudentNumber())));

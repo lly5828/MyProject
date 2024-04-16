@@ -23,5 +23,6 @@ public class DatabaseConnectionManager {
         // 连接数据库
         Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
         return connection;
+
     }
 }

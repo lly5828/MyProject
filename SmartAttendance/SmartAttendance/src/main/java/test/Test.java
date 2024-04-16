@@ -30,6 +30,8 @@ public class Test {
 
 //        SchoolTime schoolTime=new SchoolTime(4,7,DayTime.afternoon1);
 
+
+        SchoolTime.getNowSchoolTime().showSchoolTime();
         MyClassesDAO myClassesDAO=new MyClassesDAO();
         DatabaseManager databaseManager=new DatabaseManager();
         MyClass myClass=(MyClass) myClassesDAO.findById(2201);
