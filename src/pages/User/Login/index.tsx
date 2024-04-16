@@ -39,7 +39,6 @@ const Login: React.FC = () => {
       }
       // 登录
       msg.then((res: any) => {
-        console.log(res)
         if (res.code === 0) {
           // window.localStorage.setItem('token', JSON.stringify(msg.data.token));
           window.localStorage.setItem('user', JSON.stringify(res));
@@ -57,7 +56,6 @@ const Login: React.FC = () => {
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
       });
-      console.log(error);
       message.error(defaultLoginFailureMessage);
     }
   };

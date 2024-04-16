@@ -37,44 +37,16 @@ declare namespace API {
         time: string;
         reason: string;
     }
-    
+
     type DealLeave = {
         code: number;
         message: string;
         data: DeaData[];
     }
-    // interface Data {
-    //     role: string,
-    //     username: string,
-    //     token: string
-    // }
 
-    // interface RootObject {
-    //     status: string;
-    //     data: Data
-    // }
-
-    // type CurrentUser = {
-    //     role?: string;
-    //     username?: string;
-    //     avatar?: string;
-    //     userid?: string;
-    //     email?: string;
-    //     signature?: string;
-    //     title?: string;
-    //     group?: string;
-    //     tags?: { key?: string; label?: string }[];
-    //     notifyCount?: number;
-    //     unreadCount?: number;
-    //     country?: string;
-    //     access?: string;
-    //     geographic?: {
-    //         province?: { label?: string; key?: string };
-    //         city?: { label?: string; key?: string };
-    //     };
-    //     address?: string;
-    //     phone?: string;
-    //     teacherNumber?: string;
-    //     name?: string;
-    // };
+    type Course = {
+        code: number;
+        message: string;
+        data: string[][];
+    }
 }

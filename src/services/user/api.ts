@@ -122,3 +122,35 @@ export async function GetDealLeave(body: { [key: string]: any }) {
 
   return response;
 }
+
+//获取课程表信息 
+//学生：http://localhost:8080/test/CourseTableServlet
+//教师：http://localhost:8080/test/CourseTableServlet
+export async function GetCourseS(body: { [key: string]: any }) {
+  const params = new URLSearchParams(body);
+
+  const url = `/test/CourseTableServlet?${params}`;
+
+  const response = await request<API.Course>(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response;
+}
+export async function GetCourseT(body: { [key: string]: any }) {
+  const params = new URLSearchParams(body);
+
+  const url = `/test/CourseTableServlet?${params}`;
+
+  const response = await request<API.Course>(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response;
+}

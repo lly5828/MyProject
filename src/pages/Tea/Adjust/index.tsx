@@ -10,7 +10,6 @@ type FieldType = {
 
 const onFinish: FormProps<FieldType>["onFinish"] = (values:any) => {
   values.Time = values.Time.format('YYYY-MM-DD')
-  console.log('Success:', values);
 };
 export default function Adjust() {
   return (
