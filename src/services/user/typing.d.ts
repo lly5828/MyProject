@@ -49,4 +49,42 @@ declare namespace API {
         message: string;
         data: string[][];
     }
+
+    export interface ResArrayList {
+        leaveRecordNum: number;
+        teacher: string;
+        time: string;
+        reason: string;
+        result: string;
+    }
+    
+    export interface CheckResultData {
+        resArrayList: ResArrayList[];
+    }
+    
+    type CheckResult = {
+        code: number;
+        message: string;
+        data: CheckResultData;
+    }
+
+    export interface AbsentRecord {
+        number: number;
+        name: string;
+        stuClass: string;
+        stuNum: number;
+        course: string;
+        courseTime: string;
+    }
+    
+    export interface AbsentRecordData {
+        time: string;
+        absentRecords: AbsentRecord[];
+    }
+    
+    export interface AbsentRecord {
+        code: number;
+        message: string;
+        data: AbsentRecordData;
+    }
 }

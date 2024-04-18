@@ -49,24 +49,20 @@ export default function MyTable() {
   const data = [
     {
       key: '1',
-      sections: '08:00 - 09:30',
+      sections: '第1节',
       Monday: '英语'
     },
     {
       key: '2',
-      sections: '10:00 - 11:30',
+      sections: '第2节',
       Monday: 'Java',
-      Thursday:'高数'
-    },
-    {
-      key: '3',
-      sections: '13:30 - 15:00',
+      Thursday:'高数',
       Tuesday:'PHP'
     },
     {
-      key: '4',
-      sections: '15:30 - 17:00',
-      Tuesday:'Python'
+      key: '3',
+      sections: '第3节',
+      Tuesday:'PHP'
     },
   ];
   return (

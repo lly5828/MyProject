@@ -21,6 +21,7 @@
       { path: '/stu', redirect: '/stu/inquire' },
       { path: '/stu/inquire', name: '出勤查询', component: './Stu/Inquire', },
       { path: '/stu/apply', name: '请假申请', component: './Stu/Apply' },
+      { path: '/stu/applylist', name: '申请列表', component: './Stu/List' },
     ],
   },
   {
@@ -32,6 +33,7 @@
       //暂时用不上课程调整先注释路由
       // { path: '/tea/Adjust', name: '课程调整', component: './Tea/Adjust', },
       { path: '/tea/Handle', name: '请假审批', component: './Tea/Handle',access: 'canTea', },
+      { path: '/tea/status', name: '旷课记录', component: './Tea/status',access: 'canTea', },
     ],
   },
   { path: '/', redirect: '/home' },

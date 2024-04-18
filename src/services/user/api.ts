@@ -154,3 +154,35 @@ export async function GetCourseT(body: { [key: string]: any }) {
 
   return response;
 }
+
+//获取申请列表
+export async function CheckResultServlet(body: { [key: string]: any }) {
+  const params = new URLSearchParams(body);
+
+  const url = `/test/CheckResultServlet?${params}`;
+
+  const response = await request<API.CheckResult>(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response;
+}
+
+//获取学生旷课记录
+export async function AbsentRecordServlet(body: { [key: string]: any }) {
+  const params = new URLSearchParams(body);
+
+  const url = `/test/AbsentRecordServlet?${params}`;
+
+  const response = await request<API.AbsentRecord>(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return response;
+}

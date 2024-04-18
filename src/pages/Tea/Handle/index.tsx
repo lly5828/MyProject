@@ -48,7 +48,7 @@ export default function Handle() {
   const columns: TableColumnsType<DataType> = [
     {
       title: '编号',
-      width: 80,
+      width: 50,
       dataIndex: 'leaveRecordNum',
       key: 'leaveRecordNum',
       fixed: 'left',
